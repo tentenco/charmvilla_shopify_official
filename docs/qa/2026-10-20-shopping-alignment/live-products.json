@@ -1,0 +1,172 @@
+[
+  {
+    "path": "/zh/products/snowflake-gift-box",
+    "price": "$60.00預購・剩餘 500 組",
+    "selects": [
+      {
+        "id": "mix-snowflake-gift-box-0",
+        "options": [
+          {
+            "value": "",
+            "text": "請選擇茶款"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433893228",
+            "text": "玫瑰烏龍茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433925996",
+            "text": "玫瑰蜜香紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433958764",
+            "text": "東方美人茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433991532",
+            "text": "紅玉紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637434024300",
+            "text": "金萱烏龍茶"
+          }
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-1",
+        "options": [
+          {
+            "value": "",
+            "text": "請選擇茶款"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433893228",
+            "text": "玫瑰烏龍茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433925996",
+            "text": "玫瑰蜜香紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433958764",
+            "text": "東方美人茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433991532",
+            "text": "紅玉紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637434024300",
+            "text": "金萱烏龍茶"
+          }
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-2",
+        "options": [
+          {
+            "value": "",
+            "text": "請選擇茶款"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433893228",
+            "text": "玫瑰烏龍茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433925996",
+            "text": "玫瑰蜜香紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433958764",
+            "text": "東方美人茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433991532",
+            "text": "紅玉紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637434024300",
+            "text": "金萱烏龍茶"
+          }
+        ]
+      }
+    ],
+    "buy": "還要選 3 盒",
+    "overflow": false
+  },
+  {
+    "path": "/zh/products/christmas-gift-box",
+    "price": "$120.00預購・剩餘 500 盒",
+    "selects": [
+      {
+        "id": "tea-christmas-gift-box",
+        "options": [
+          {
+            "value": "",
+            "text": "請選擇茶款"
+          },
+          {
+            "value": "綜合茶款",
+            "text": "綜合茶款"
+          },
+          {
+            "value": "玫瑰烏龍茶",
+            "text": "玫瑰烏龍茶"
+          },
+          {
+            "value": "東方美人茶",
+            "text": "東方美人茶"
+          }
+        ]
+      },
+      {
+        "id": "lid-christmas-gift-box",
+        "options": [
+          {
+            "value": "",
+            "text": "請選擇盒蓋"
+          },
+          {
+            "value": "聖誕襪",
+            "text": "聖誕襪"
+          },
+          {
+            "value": "拐杖糖",
+            "text": "拐杖糖"
+          }
+        ]
+      }
+    ],
+    "buy": "請先選擇商品選項",
+    "overflow": false
+  },
+  {
+    "path": "/zh/products/reunion-paper-gift-box",
+    "price": "$170.00預購・剩餘 30 盒",
+    "selects": [
+      {
+        "id": "option-reunion-paper-gift-box",
+        "options": [
+          {
+            "value": "",
+            "text": "請選擇商品選項"
+          },
+          {
+            "value": "0",
+            "text": "金色"
+          },
+          {
+            "value": "1",
+            "text": "黃色"
+          },
+          {
+            "value": "2",
+            "text": "紅色"
+          }
+        ]
+      }
+    ],
+    "buy": "請先選擇商品選項",
+    "overflow": false
+  }
+]

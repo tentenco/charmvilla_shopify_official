@@ -1,0 +1,39 @@
+{
+  "status": "ok",
+  "deployment": {
+    "id": "dpl_4oM21PZ8ZMvsP3ZAUeY8dVPUSzp9",
+    "url": "https://charmvilla-design-preview-5c8czr7k3-tentenco.vercel.app",
+    "productionUrl": "https://charmvilla-design-preview.vercel.app",
+    "inspectorUrl": "https://vercel.com/tentenco/charmvilla-design-preview/4oM21PZ8ZMvsP3ZAUeY8dVPUSzp9",
+    "readyState": "READY",
+    "target": "production",
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_4oM21PZ8ZMvsP3ZAUeY8dVPUSzp9",
+    "buildMachine": {
+      "cores": 4,
+      "memory": 8192,
+      "machine": "standard",
+      "selectionType": "fixed",
+      "selectionSource": "plan-default"
+    },
+    "deploymentProtection": []
+  },
+  "message": "Deployment charmvilla-design-preview-5c8czr7k3-tentenco.vercel.app ready. Production URL: https://charmvilla-design-preview.vercel.app",
+  "next": [
+    {
+      "command": "vercel git connect --scope tentenco --non-interactive --project charmvilla-design-preview",
+      "when": "Automatically deploy changes on every push"
+    },
+    {
+      "command": "vercel curl https://charmvilla-design-preview.vercel.app",
+      "when": "Verify deployment, including when Deployment Protection is enabled"
+    },
+    {
+      "command": "vercel inspect charmvilla-design-preview-5c8czr7k3-tentenco.vercel.app --scope tentenco --non-interactive",
+      "when": "Inspect deployment"
+    },
+    {
+      "command": "vercel deploy --prod --scope tentenco --non-interactive",
+      "when": "Promote to production"
+    }
+  ]
+}

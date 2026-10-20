@@ -1,0 +1,197 @@
+{
+  "sameShoppingUI": true,
+  "preview": {
+    "price": "$60.00預購・剩餘 500 組",
+    "selects": [
+      {
+        "id": "mix-snowflake-gift-box-0",
+        "options": [
+          {
+            "value": "",
+            "text": "請選擇茶款"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433893228",
+            "text": "玫瑰烏龍茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433925996",
+            "text": "玫瑰蜜香紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433958764",
+            "text": "東方美人茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433991532",
+            "text": "紅玉紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637434024300",
+            "text": "金萱烏龍茶"
+          }
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-1",
+        "options": [
+          {
+            "value": "",
+            "text": "請選擇茶款"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433893228",
+            "text": "玫瑰烏龍茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433925996",
+            "text": "玫瑰蜜香紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433958764",
+            "text": "東方美人茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433991532",
+            "text": "紅玉紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637434024300",
+            "text": "金萱烏龍茶"
+          }
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-2",
+        "options": [
+          {
+            "value": "",
+            "text": "請選擇茶款"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433893228",
+            "text": "玫瑰烏龍茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433925996",
+            "text": "玫瑰蜜香紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433958764",
+            "text": "東方美人茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433991532",
+            "text": "紅玉紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637434024300",
+            "text": "金萱烏龍茶"
+          }
+        ]
+      }
+    ],
+    "button": "還要選 3 盒"
+  },
+  "production": {
+    "price": "$60.00預購・剩餘 500 組",
+    "selects": [
+      {
+        "id": "mix-snowflake-gift-box-0",
+        "options": [
+          {
+            "value": "",
+            "text": "請選擇茶款"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433893228",
+            "text": "玫瑰烏龍茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433925996",
+            "text": "玫瑰蜜香紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433958764",
+            "text": "東方美人茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433991532",
+            "text": "紅玉紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637434024300",
+            "text": "金萱烏龍茶"
+          }
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-1",
+        "options": [
+          {
+            "value": "",
+            "text": "請選擇茶款"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433893228",
+            "text": "玫瑰烏龍茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433925996",
+            "text": "玫瑰蜜香紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433958764",
+            "text": "東方美人茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433991532",
+            "text": "紅玉紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637434024300",
+            "text": "金萱烏龍茶"
+          }
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-2",
+        "options": [
+          {
+            "value": "",
+            "text": "請選擇茶款"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433893228",
+            "text": "玫瑰烏龍茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433925996",
+            "text": "玫瑰蜜香紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433958764",
+            "text": "東方美人茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637433991532",
+            "text": "紅玉紅茶"
+          },
+          {
+            "value": "gid://shopify/ProductVariant/67637434024300",
+            "text": "金萱烏龍茶"
+          }
+        ]
+      }
+    ],
+    "button": "還要選 3 盒"
+  },
+  "badge": {
+    "top": "48px",
+    "overflow": false
+  },
+  "http": {
+    "status": 200,
+    "robots": "noindex, nofollow"
+  }
+}

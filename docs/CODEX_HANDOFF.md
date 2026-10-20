@@ -3,7 +3,7 @@
 - 使用者要求只改前台設計，購物車功能保持正式站原樣。已撤除local模擬/API阻擋，commerce/catalog/data/API/proxy與origin/main零diff。
 - 獨立測試專案接回同商店Shopify與會員設定，預覽標示寫明連接正式商店；GA/Shopify analytics停用。正式main與網域未修改。
 - 真實cart create/read/update/remove、hosted checkout URL、會員redirect、非法輸入已驗證；未付款/下單/訂閱，測試cart已清空。check與13商品測試通過。
-- 本輪QA與部署完成狀態見 docs/qa/2026-10-20-shopping-alignment 和 docs/agent/PLAN.md。
+- 應用4e2a94d已push；最終部署 dpl_4oM21PZ8ZMvsP3ZAUeY8dVPUSzp9 READY，固定測試網址已驗證。正式站部署未變；QA見docs/qa/2026-10-20-shopping-alignment。
 
 ---
 

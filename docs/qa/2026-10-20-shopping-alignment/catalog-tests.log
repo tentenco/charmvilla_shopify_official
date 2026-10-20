@@ -1,0 +1,29 @@
+
+> charmvilla-gallery-site@0.1.0 shopify:test
+> node --test scripts/shopify/catalog.test.mjs
+
+(node:35378) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/kuan/Documents/Codex/charmvilla-design-preview/src/lib/shopify/catalog-data.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/kuan/Documents/Codex/charmvilla-design-preview/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Shopify replaces price and stock while preserving approved image objects (1.03425ms)
+✔ Christmas small gift follows the confirmed Shopify three-box US$60 set without inventing mix variants (0.382209ms)
+✔ Option photos match by identity, independently of variant order (0.400833ms)
+✔ Every mapped variant has one identity, without fabricated or shared GIDs (0.082ms)
+✔ Chinese option labels retain verified pink and Christmas color photographs (0.344667ms)
+✔ Separate Christmas tea and lid selections preserve all six Shopify variant identities in any order (1.13125ms)
+✔ Tea note names follow the Shopify competition grade while preserving editorial text (0.115334ms)
+✔ Shopify Chinese CMS restores approved copy without changing commerce or images (0.436458ms)
+✔ All 14 Chinese migration entries match Shopify IDs and contain no retired pre-order claims (0.268084ms)
+✔ Approved preorder restoration preserves every Shopify price, variant and sale restriction (1.318375ms)
+✔ Explicit campaign disable overrides legacy preorder copy without converting regular inventory to preorder (0.169584ms)
+✔ An enabled preorder must provide approved terms in both languages (0.19375ms)
+✔ Reunion follows current Gold/Yellow/Red identities in both languages without mutating source or assigning old-color photos (0.199541ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 64.439

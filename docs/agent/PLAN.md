@@ -1,5 +1,5 @@
 # 2026-10-20 商品購物介面對齊
-Status: in_progress
+Status: completed
 
 ## Active task
 - 使用者指出設計測試站 snowflake-gift-box 購物介面與正式站不一致。
@@ -10,9 +10,9 @@ Status: in_progress
 ## Steps and evidence
 - completed: Ego38確認正式站三盒混搭/剩餘500組；測試站單一選單/售罄。原因為舊快照缺少preorderBatch。
 - 使用者最新指示：直接複製正式站，只做前台設計，不更改購物車功能。
-- in_progress: 撤回快照方案，commerce/catalog/proxy/newsletter檔逐一回到origin/main；測試專案使用正式Shopify設定，只有設計標示與分析隔離。
+- completed: 撤回快照方案，commerce/catalog/proxy/newsletter檔逐一回到origin/main；測試專案使用正式Shopify設定，只有設計標示與分析隔離。
 - completed: commerce檔與origin/main零diff；八項正式同商店設定已配置到獨立專案。
-- in_progress: check、商品測試、瀏覽器操作及測試站部署驗證。
+- completed: check/13商品測試/本機與線上Shopify cart CRUD/雙語1440與390瀏覽器通過；QA在docs/qa/2026-10-20-shopping-alignment。
 
 ## FIFO queue
 無。
@@ -22,3 +22,6 @@ Status: in_progress
 
 ## Attempts and decisions
 - Vercel正式Secret無法pull，僅回傳佔位符；未部署佔位設定，已以本機已驗證商店連線覆寫八項設定，後續用即時API確認。憑證檔忽略且0600，不輸出。
+
+## Delivery
+應用4e2a94d已push，最終獨立測試站 dpl_4oM21PZ8ZMvsP3ZAUeY8dVPUSzp9 READY。正式站部署未變。測試cart全清空，未付款。

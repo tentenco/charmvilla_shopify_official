@@ -1,0 +1,174 @@
+[
+  {
+    "lang": "zh",
+    "width": 1440,
+    "overflow": false,
+    "price": "$60.00預購・剩餘 500 組",
+    "selects": [
+      {
+        "id": "mix-snowflake-gift-box-0",
+        "options": [
+          "請選擇茶款",
+          "玫瑰烏龍茶",
+          "玫瑰蜜香紅茶",
+          "東方美人茶",
+          "紅玉紅茶",
+          "金萱烏龍茶"
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-1",
+        "options": [
+          "請選擇茶款",
+          "玫瑰烏龍茶",
+          "玫瑰蜜香紅茶",
+          "東方美人茶",
+          "紅玉紅茶",
+          "金萱烏龍茶"
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-2",
+        "options": [
+          "請選擇茶款",
+          "玫瑰烏龍茶",
+          "玫瑰蜜香紅茶",
+          "東方美人茶",
+          "紅玉紅茶",
+          "金萱烏龍茶"
+        ]
+      }
+    ],
+    "buy": "還要選 3 盒",
+    "badge": "設計預覽 · 購物連接正式商店"
+  },
+  {
+    "lang": "zh",
+    "width": 390,
+    "overflow": false,
+    "price": "$60.00預購・剩餘 500 組",
+    "selects": [
+      {
+        "id": "mix-snowflake-gift-box-0",
+        "options": [
+          "請選擇茶款",
+          "玫瑰烏龍茶",
+          "玫瑰蜜香紅茶",
+          "東方美人茶",
+          "紅玉紅茶",
+          "金萱烏龍茶"
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-1",
+        "options": [
+          "請選擇茶款",
+          "玫瑰烏龍茶",
+          "玫瑰蜜香紅茶",
+          "東方美人茶",
+          "紅玉紅茶",
+          "金萱烏龍茶"
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-2",
+        "options": [
+          "請選擇茶款",
+          "玫瑰烏龍茶",
+          "玫瑰蜜香紅茶",
+          "東方美人茶",
+          "紅玉紅茶",
+          "金萱烏龍茶"
+        ]
+      }
+    ],
+    "buy": "還要選 3 盒",
+    "badge": "設計預覽 · 購物連接正式商店"
+  },
+  {
+    "lang": "en",
+    "width": 1440,
+    "overflow": false,
+    "price": "$60.00Pre-order · 500 left",
+    "selects": [
+      {
+        "id": "mix-snowflake-gift-box-0",
+        "options": [
+          "Select a tea",
+          "Rose Oolong Tea",
+          "Rose & Honey-Scented Black Tea",
+          "Oriental Beauty Tea",
+          "Ruby Black Tea",
+          "Jin Xuan Tea"
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-1",
+        "options": [
+          "Select a tea",
+          "Rose Oolong Tea",
+          "Rose & Honey-Scented Black Tea",
+          "Oriental Beauty Tea",
+          "Ruby Black Tea",
+          "Jin Xuan Tea"
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-2",
+        "options": [
+          "Select a tea",
+          "Rose Oolong Tea",
+          "Rose & Honey-Scented Black Tea",
+          "Oriental Beauty Tea",
+          "Ruby Black Tea",
+          "Jin Xuan Tea"
+        ]
+      }
+    ],
+    "buy": "Choose 3 more boxes",
+    "badge": "Design preview · Connected to the live store"
+  },
+  {
+    "lang": "en",
+    "width": 390,
+    "overflow": false,
+    "price": "$60.00Pre-order · 500 left",
+    "selects": [
+      {
+        "id": "mix-snowflake-gift-box-0",
+        "options": [
+          "Select a tea",
+          "Rose Oolong Tea",
+          "Rose & Honey-Scented Black Tea",
+          "Oriental Beauty Tea",
+          "Ruby Black Tea",
+          "Jin Xuan Tea"
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-1",
+        "options": [
+          "Select a tea",
+          "Rose Oolong Tea",
+          "Rose & Honey-Scented Black Tea",
+          "Oriental Beauty Tea",
+          "Ruby Black Tea",
+          "Jin Xuan Tea"
+        ]
+      },
+      {
+        "id": "mix-snowflake-gift-box-2",
+        "options": [
+          "Select a tea",
+          "Rose Oolong Tea",
+          "Rose & Honey-Scented Black Tea",
+          "Oriental Beauty Tea",
+          "Ruby Black Tea",
+          "Jin Xuan Tea"
+        ]
+      }
+    ],
+    "buy": "Choose 3 more boxes",
+    "badge": "Design preview · Connected to the live store"
+  }
+]

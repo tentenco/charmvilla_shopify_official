@@ -1,0 +1,51 @@
+Vercel CLI 62.1.0
+Fetching deployment "www.charmvilla.com" in tentenco
+> Fetched deployment "charmvilla-demo2-mm6djk6m2-tentenco.vercel.app" in tentenco [758ms]
+
+  General
+
+    id		dpl_HZVUjqj8nUtUt6LbNKDzdD47h6sf
+    name	charmvilla-demo2
+    target	production
+    status	● Ready
+    url		https://charmvilla-demo2-mm6djk6m2-tentenco.vercel.app
+    created	Fri Oct 16 2026 14:38:54 GMT+0800 (Taiwan Standard Time) [4d ago]
+
+
+  Build Machine
+
+    requested build machine standard
+    actual assigned cores   4 vCPU (actual assignment)
+    memory                  8192 MiB
+    selection type          elastic
+    selection source        elastic-algorithm
+
+
+  Duration
+
+    build duration	36s
+    post-build duration	19s
+    billable duration	1m
+    CPU Minutes Usage	4 minutes (1m x 4vCPU)
+
+
+  Aliases
+
+    ╶ https://www.charmvilla.com
+    ╶ https://charmvilla-demo2.vercel.app
+    ╶ https://charmvilla.com
+    ╶ https://charmvilla-demo2-tentenco.vercel.app
+    ╶ https://charmvilla-demo2-git-main-tentenco.vercel.app
+    
+
+  Builds
+
+    ┌ .        [0ms]
+    ├── λ [lang] (1.07MB) [iad1]
+    ├── λ [lang].rsc (1.07MB) [iad1]
+    ├── λ [lang]/[...rest] (1.07MB) [iad1]
+    ├── λ [lang]/[...rest].rsc (1.07MB) [iad1]
+    ├── λ [lang]/account/activate/[[...token]] (1.07MB) [iad1]
+    └── 197 output items hidden
+    
+
