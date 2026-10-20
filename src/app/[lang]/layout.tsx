@@ -39,7 +39,7 @@ export default async function RootLayout({ children, params }: Props & { childre
   const lang = isLocale(raw) ? raw : defaultLocale;
   return (
     <html lang={htmlLang[lang]} className={`${outfit.variable} ${notoTC.variable}`} suppressHydrationWarning>
-      <body className="bg-page text-ink"><script dangerouslySetInnerHTML={{ __html: introSeenScript }} /><JsonLd nodes={siteEntities(lang, social.map(link => link.href))} /><LocaleProvider lang={lang}><CartProvider>{children}{process.env.NEXT_PUBLIC_DESIGN_PREVIEW === "true" && <aside className="design-preview-notice" aria-label={lang === "zh" ? "測試站說明" : "Preview notice"}>{lang === "zh" ? "設計測試站 · 不開放下單｜商品資訊僅供版型預覽" : "Design preview · No orders · Product details are for layout review"}</aside>}<CartDrawer /><NewsletterPopup /><Analytics /></CartProvider></LocaleProvider></body>
+      <body className="bg-page text-ink"><script dangerouslySetInnerHTML={{ __html: introSeenScript }} /><JsonLd nodes={siteEntities(lang, social.map(link => link.href))} /><LocaleProvider lang={lang}><CartProvider>{children}{process.env.NEXT_PUBLIC_DESIGN_PREVIEW === "true" && <aside className="design-preview-notice" aria-label={lang === "zh" ? "測試站說明" : "Preview notice"}>{lang === "zh" ? "設計預覽 · 購物連接正式商店" : "Design preview · Connected to the live store"}</aside>}<CartDrawer /><NewsletterPopup /><Analytics /></CartProvider></LocaleProvider></body>
     </html>
   );
 }

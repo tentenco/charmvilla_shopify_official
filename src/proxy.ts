@@ -12,15 +12,6 @@ const REWRITTEN = "x-cv-locale-rewrite";
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  if (process.env.NEXT_PUBLIC_DESIGN_PREVIEW === "true") {
-    if (/^\/api\/(cart|account|newsletter)(\/|$)/.test(pathname)) {
-      return NextResponse.json({ error: "design_preview", message: "此站僅供設計審稿，不提供交易、會員或訂閱。 / Design preview: checkout, accounts and subscriptions are disabled." }, { status: 403 });
-    }
-    if (/^\/(?:en\/|zh\/)?account(?:\/|$)/.test(pathname)) {
-      return NextResponse.redirect(new URL(pathname.startsWith("/zh") ? "/zh" : "/", request.url), 307);
-    }
-  }
-  if (pathname.startsWith("/api/")) return NextResponse.next();
   if (pathname === "/zh" || pathname.startsWith("/zh/")) return NextResponse.next();
   const url = request.nextUrl.clone();
   if (pathname === "/en" || pathname.startsWith("/en/")) {
@@ -33,5 +24,5 @@ export function proxy(request: NextRequest) {
   return NextResponse.rewrite(url, { request: { headers } });
 }
 
-// API routes also pass through the design-preview guard; normal requests keep existing behavior.
-export const config = { matcher: ["/api/:path*", "/((?!api|_next|media|brand|.*\\..*).*)"] };
+// Skip API routes, Next internals, public media and any path with a file extension (sitemap.xml, icon.svg, …).
+export const config = { matcher: ["/((?!api|_next|media|brand|.*\\..*).*)"] };
