@@ -1,6 +1,6 @@
 # Museum architecture visual proposal — 2026-10-20
 
-Status: `in_progress`
+Status: `completed`
 
 ## Active task
 - 使用者要求依客戶截圖直接改版並提供預覽。
@@ -12,14 +12,25 @@ Status: `in_progress`
 
 ## Steps
 1. completed：核對客戶需求、正式建築資料與現行結構。
-2. in_progress：建立原創建築線稿、首頁展示與故事背景。
-3. pending：Node 24 check、本機瀏覽器、測試站部署與公開驗證。
+2. completed：建立原創建築線稿、首頁展示與故事背景。
+3. completed：Node 24 check、本機瀏覽器、測試站部署與公開驗證。
+
+## Verification and delivery
+- 應用提交 98d97a4 已推送 design/museum-preview；建築線稿、Hero 與故事背景均在測試分支。
+- Node 24 npm run check 通過（0 errors，7 既有 warnings）；沒有新增依賴或圖片生成。
+- Vercel 獨立測試專案部署 dpl_ByWsKdM6GD9gmj8YcrkDsPuPpbFf READY，https://charmvilla-design-preview.vercel.app/zh?preview=museum-01 。
+- Ego 35：中英文 1440×900 / 390×844，3 張照片 naturalWidth > 0、無橫向溢出／runtime error／GA tracking；三場景桌機截圖、手機與故事區已看。
+- 手動 01/02/03、鍵盤 ArrowRight、自動 8 秒輪播、暫停、reduced-motion 樣式、故事 anchor 通過。Reduced 檢查包含暫停狀態 8.5 秒不變；未宣稱單獨驗證 reduced 自動輪播條件。
+- 測試站 HTTP 200 / noindex，cart POST 仍 403 design_preview；正式部署仍 dpl_HZVUjqj8nUtUt6LbNKDzdD47h6sf。
+- 首頁段落與商品照片保留；未加入隱藏的皮革／金飾分類，未修改 Shopify／正式站。
+- QA 入口 docs/qa/2026-10-20-museum-visual，影像與建築一手參考見 DIRECTION.md。
+- 本機及正式瀏覽器均為模擬手機尺寸，未實機驗收；全站未受影響的交易與商品流程不重跑。
 
 ## FIFO queue
 無。
 
 ## Resume
-完成視覺實作並驗證；不變更 Shopify／正式站。
+已交付建築線條第一版；等待使用者審稿，後續沿 design/museum-preview 更新，禁止推 main。
 
 ## Previous completed setup
 

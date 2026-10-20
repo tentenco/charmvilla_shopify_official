@@ -1,0 +1,12 @@
+{
+  "keyboardNext": true,
+  "reducedMotionMatched": true,
+  "pausedStayedSame8500ms": true,
+  "autoAdvancedWithin12000ms": true,
+  "story": {
+    "storyTop": 113.5,
+    "storySVG": true,
+    "width": 1440,
+    "overflow": false
+  }
+}

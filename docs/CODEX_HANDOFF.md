@@ -1,3 +1,13 @@
+# 2026-10-20 美術館建築線條預覽 v1
+
+- 使用者要求依客戶截圖改出預覽；已部署獨立 https://charmvilla-design-preview.vercel.app/zh?preview=museum-01 。
+- 應用提交 98d97a4；部署 dpl_ByWsKdM6GD9gmj8YcrkDsPuPpbFf。正式 main / www.charmvilla.com 未動。
+- 保留首頁段落順序／商品影像，Hero 改為 Art as Life、螺旋／穹頂／玻璃幾何原創 SVG 背景，陶土紅／橄欖綠／霧金三色，故事區接續線稿。
+- 有暫停／手動切換／箭頭鍵、手機與 reduced-motion。Node 24 check 和代表性雙語桌手機 QA 通過；證據見 docs/qa/2026-10-20-museum-visual。
+- 下一步等使用者審稿。使用本 worktree / design/museum-preview，CLI 明確部署 charmvilla-design-preview；不推 main。
+
+---
+
 # 2026-10-20 獨立設計測試站
 
 - 本工作樹為 design/museum-preview，來源 main 4a24183；正式工作樹 WIP 保留。

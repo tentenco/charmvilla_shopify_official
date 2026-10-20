@@ -1,0 +1,18 @@
+{
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "museumHero": true,
+      "noindex": true
+    },
+    {
+      "path": "/zh",
+      "status": 200,
+      "museumHero": true,
+      "noindex": true
+    }
+  ],
+  "cartBlocked": true,
+  "productionUnchanged": true
+}
