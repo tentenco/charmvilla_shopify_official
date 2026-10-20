@@ -1829,7 +1829,8 @@ main:has(> .tasks-page), .catalog-shell:has(> main > .tasks-page), .catalog-shel
 .cookie-banner button:focus-visible { outline: 2px solid #927545; outline-offset: 3px; }
 
 /* Only rendered in the isolated design-review environment. */
-.design-preview-notice { position: fixed; left: 50%; bottom: max(12px, env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 9999; width: max-content; max-width: calc(100vw - 32px); padding: 8px 14px; border: 1px solid #b9ad95; border-radius: 4px; background: #24221eee; color: #f7f3e9; font: 11px/1.6 system-ui, sans-serif; text-align: center; pointer-events: none; }
+.design-preview-notice { position: fixed; top: 80px; right: var(--page-gutter); z-index: 9999; width: max-content; max-width: calc(100vw - 32px); padding: 4px 8px; border-radius: 4px; background: #e7e3d9; color: #706d63; font: 10px/1.6 system-ui, sans-serif; text-align: center; pointer-events: none; }
+html.cart--open .design-preview-notice { display: none; }
 
 /* Museum architecture study, preview v1. Same content sequence and original photographs. */
 body:has(.museum-hero) { --color-page: #f2f0e9; --color-ink: #292b27; }
@@ -1917,4 +1918,3 @@ body:has(.museum-hero) .featured-heading { border-top: 1px solid #8b897744; padd
   .museum-drawing, .museum-object, .museum-title > span { transition: none; transform: none !important; }
 }
 /* Keep the review notice clear of the artwork captions and slideshow controls. */
-body:has(.museum-hero) .design-preview-notice { top: 80px; bottom: auto; left: auto; right: var(--page-gutter); transform: none; padding: 4px 8px; border: 0; background: #e7e3d9; color: #706d63; font-size: 9px; }
