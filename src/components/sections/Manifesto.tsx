@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getContent } from "@/data/content";
 import { useLocale } from "@/i18n/LocaleProvider";
-import InkBloom from "@/components/ui/InkBloom";
+import ArchitectureLines from "@/components/ui/ArchitectureLines";
 import { SCROLLER_SELECTOR } from "@/lib/motion/scroller";
 
 // Brand story text screen. The image gallery that used to follow it became the "以手成形" carousel (CraftMoments, 2026-10-01).
@@ -30,7 +30,7 @@ export default function Manifesto() {
         opacity: 1, stagger: .035, duration: .15, ease: "none",
         scrollTrigger: { scroller, trigger: el.querySelector(".story-copy"), start: "top 80%", end: "bottom 80%", scrub: true, invalidateOnRefresh: true },
       });
-      const brush = el.querySelector(".story-brush");
+      const brush = el.querySelector(".story-architecture");
       if (brush) gsap.fromTo(brush, { yPercent: 12 }, { yPercent: -18, ease: "none", scrollTrigger: { scroller, trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
     }, el);
     document.fonts.ready.then(() => { if (el.isConnected) ScrollTrigger.refresh(); });
@@ -40,7 +40,7 @@ export default function Manifesto() {
   return (
     <section id="manifesto" ref={root} className="brand-story" aria-labelledby="story-heading">
       <div className="story-message">
-        <div className="story-brush story-brush--message" aria-hidden="true"><InkBloom observe seed={11} /></div>
+        <div className="story-architecture" aria-hidden="true"><ArchitectureLines variant={2} /><span>LINE / FORM / LIFE</span></div>
         {/* After the text-media block of jakobsencopenhagen.com (user 2026-10-02: 「標題跟內文分開欄位，並將內文字改小一點」): the title in
             the first columns, the paragraphs set in beside it in smaller type, both starting level. */}
         <div className="story-text-column story-copy">

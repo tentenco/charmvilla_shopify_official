@@ -1,172 +1,79 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { gsap } from "gsap";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getContent } from "@/data/content";
 import { useT } from "@/i18n/LocaleProvider";
 import { localeHref } from "@/i18n/config";
-import InkBloom from "@/components/ui/InkBloom";
+import ArchitectureLines from "@/components/ui/ArchitectureLines";
 
-const brushGroups = [
-  [{ name: "paint1_1a", x: -400, y: 300, w: 1251, h: 1693 }, { name: "paint1_1b", x: -400, y: 300, w: 1251, h: 1693 }, { name: "paint1_2", x: 600, y: 400, w: 373, h: 593 }],
-  [{ name: "paint2_1", x: 850, y: 150, w: 1306, h: 1657 }, { name: "paint2_2", x: -500, y: 600, w: 450, h: 463 }],
-  [{ name: "paint3_1", x: -100, y: -300, w: 1148, h: 1514 }],
-];
-
-// Three photographs travel around an ellipse. Paint, photographs and type occupy
-// separate depth planes; the image files themselves are never distorted or edited.
 export default function Hero() {
   const { lang, t } = useT();
   const { hero } = getContent(lang);
-  const root = useRef<HTMLElement>(null);
-  const advance = useRef<(direction: number) => void>(() => {});
-  const pointer = useRef({ x: 0, y: 0 });
   const [active, setActive] = useState(0);
-  const hoverRef = useRef(false);
-  const focusRef = useRef(false);
-  // The visible pause control (WCAG 2.2.2): while paused the photographs stay where they are; arrows, swipe and links still work.
   const [paused, setPaused] = useState(false);
-  const pausedRef = useRef(false);
-  const touchStart = useRef<number | null>(null);
+  const root = useRef<HTMLElement>(null);
+  const hold = useRef(false);
+  const visible = useRef(true);
+  const touch = useRef<number | null>(null);
+  const studies = [
+    { name: t("曲線，盛裝日常。", "A curve holds the everyday."), word: t("形之迴旋", "The spiral"), tone: "clay" },
+    { name: t("光影，停留片刻。", "A moment held in light."), word: t("光之穹頂", "The canopy"), tone: "olive" },
+    { name: t("秩序，留下手感。", "Geometry meets the hand."), word: t("線之構成", "The geometry"), tone: "gold" },
+  ];
+  const move = (direction: number) => setActive(value => (value + direction + hero.slides.length) % hero.slides.length);
 
   useEffect(() => {
-    const el = root.current!;
-    const cards = [...el.querySelectorAll<HTMLElement>("[data-orbit-card]")];
-    const paints = [...el.querySelectorAll<HTMLElement>("[data-orbit-paint]")];
+    const el = root.current;
+    if (!el) return;
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const state = { angle: 0, x: 0, y: 0 };
-    let current = 0;
-    let visible = true;
-    let busy = false;
-    let nextAt = performance.now() + 7500;
-    let tween: gsap.core.Tween | undefined;
-
-    const render = () => {
-      const mobile = el.clientWidth < 768;
-      const radius = el.clientWidth * (mobile ? .77 : .60);
-      el.style.setProperty("--brush-unit", `${el.clientHeight * (mobile ? .64 / 800 : .6 / 900)}px`);
-      state.x += (pointer.current.x - state.x) * .065;
-      state.y += (pointer.current.y - state.y) * .065;
-      cards.forEach((card, i) => {
-        const angle = (i * 120 + state.angle) * Math.PI / 180;
-        const depth = (Math.cos(angle) + 1) / 2;
-        const scale = .33 + depth * .67;
-        const x = Math.sin(angle) * radius - state.x * (10 + depth * 16);
-        const y = (1 - depth) * -el.clientHeight * .075 + state.y * (5 + depth * 8);
-        card.style.transform = `translate(-50%, -50%) translate3d(${x}px, ${y}px, 0) scale(${scale}) perspective(1000px) rotateY(${-state.x * depth * 7}deg) rotateZ(${[-4, 3, 4][i]}deg)`;
-        card.style.zIndex = String(Math.round(depth * 10) + 2);
-        card.style.filter = `blur(${(1 - depth) * 5}px)`;
-        card.style.opacity = String(.24 + depth * .76);
-        paints[i].style.transform = `translate(-50%, -50%) translate3d(${Math.sin(angle) * radius * .78 - state.x * 7}px, ${state.y * 5}px, 0) scale(${.33 + depth * .67})`;
-        paints[i].style.opacity = String(.38 + depth * .62);
-      });
-    };
-
-    const rotate = (direction: number) => {
-      if (busy) return;
-      const target = state.angle - direction * 120;
-      current = (current + direction + 3) % 3;
-      setActive(current);
-      nextAt = performance.now() + 6000;
-      tween?.kill();
-      if (media.matches) { state.angle = target; render(); return; }
-      busy = true;
-      tween = gsap.to(state, { angle: target, duration: 1.4, ease: "expo.inOut", onComplete: () => { busy = false; } });
-    };
-    advance.current = rotate;
-    const tick = () => {
-      if (document.hidden || !visible) return;
-      if (!media.matches) render();
-      if (!media.matches && !hoverRef.current && !focusRef.current && !pausedRef.current && !busy && performance.now() > nextAt && document.documentElement.classList.contains("is-loaded")) rotate(1);
-    };
-    const observer = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      nextAt = performance.now() + 6000;
-    }, { threshold: .15 });
+    const observer = new IntersectionObserver(([entry]) => { visible.current = entry.isIntersecting; }, { threshold: .2 });
     observer.observe(el);
-    const onVisibility = () => { nextAt = performance.now() + 6000; };
-    const resize = new ResizeObserver(render);
-    resize.observe(el);
-    const onMotionChange = () => {
-      tween?.kill(); busy = false; state.angle = -current * 120;
-      pointer.current = { x: 0, y: 0 }; state.x = 0; state.y = 0;
-      render();
-    };
-    media.addEventListener("change", onMotionChange);
-    document.addEventListener("visibilitychange", onVisibility);
-    gsap.ticker.add(tick);
-    render();
-    // The heading is split into letters by the motion engine (SplitText), which puts an aria-label on each plain <span>; those
-    // spans are aria-hidden here and the full words are in a screen-reader-only copy, so the stray labels are removed.
-    const title = el.querySelector(".orbit-title");
-    const stripLabels = () => title?.querySelectorAll("[aria-label]").forEach((node) => node.removeAttribute("aria-label"));
-    const labels = new MutationObserver(stripLabels);
-    if (title) labels.observe(title, { subtree: true, attributes: true, attributeFilter: ["aria-label"] });
-    stripLabels();
-    return () => {
-      advance.current = () => {};
-      tween?.kill(); gsap.ticker.remove(tick); observer.disconnect(); resize.disconnect(); labels.disconnect();
-      media.removeEventListener("change", onMotionChange);
-      document.removeEventListener("visibilitychange", onVisibility);
-    };
-  }, []);
+    const timer = window.setInterval(() => {
+      if (!paused && !hold.current && visible.current && !document.hidden && !media.matches && !el.contains(document.activeElement)) {
+        setActive(value => (value + 1) % 3);
+      }
+    }, 8000);
+    return () => { window.clearInterval(timer); observer.disconnect(); };
+  }, [paused]);
 
-  return (
-    <section ref={root} id="hero" className="orbit-hero" aria-label={t("日常物件，三件展品", "Everyday objects, three pieces on show")} aria-roledescription={t("輪播", "carousel")}
-      onPointerMove={(e) => {
-        if (e.pointerType !== "mouse") return;
-        const r = e.currentTarget.getBoundingClientRect();
-        pointer.current = { x: (e.clientX - r.left) / r.width * 2 - 1, y: (e.clientY - r.top) / r.height * 2 - 1 };
-      }}
-      onPointerLeave={() => { pointer.current = { x: 0, y: 0 }; }}
-      onFocusCapture={() => { focusRef.current = true; }}
-      onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) focusRef.current = false; }}
-      onTouchStart={(e) => { touchStart.current = e.touches[0].clientX; }}
-      onTouchEnd={(e) => {
-        if (touchStart.current !== null) {
-          const delta = e.changedTouches[0].clientX - touchStart.current;
-          if (Math.abs(delta) > 45) advance.current(delta < 0 ? 1 : -1);
-        }
-        touchStart.current = null;
-      }}>
-      <div className="orbit-stage" data-hero-reveal="">
-        <div className="orbit-paints" aria-hidden="true">
-          {hero.slides.map((slide, i) => (
-            <div className={`orbit-paint orbit-paint--${i}`} data-orbit-paint="" key={slide.id}>
-              {brushGroups[i].map((brush, j) => (
-                <span key={brush.name} className="orbit-brush" style={{
-                  "--brush-x": brush.x,
-                  "--brush-y": -brush.y,
-                  "--brush-w": brush.w * 1.7,
-                  "--brush-h": brush.h * 1.7,
-                  "--brush-pc": `url(/media/hero/brushes/${brush.name}_pc.webp)`,
-                  "--brush-sp": `url(/media/hero/brushes/${brush.name}_sp.webp)`,
-                } as CSSProperties}><InkBloom active={active === i} seed={i * 3 + j + 1} /></span>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="orbit-photographs">
-          {hero.slides.map((slide, i) => (
-            <div key={slide.id} data-orbit-card="" data-active={active === i} className={`orbit-card orbit-card--${slide.id}`} aria-hidden={active !== i}>
-              <Link href={localeHref(lang, slide.href)} tabIndex={active === i ? 0 : -1} aria-label={t(`探索${slide.label}`, `Explore the ${slide.label}`)} className="orbit-photo-link" onPointerEnter={() => { hoverRef.current = true; }} onPointerLeave={() => { hoverRef.current = false; }}>
-                {/* sizes follow .orbit-card's widths in globals.css; only the first photograph is preloaded */}
-                <Image src={slide.src} alt={slide.alt} width={slide.w} height={slide.h} sizes="(max-width: 767px) min(60vw, 340px), (max-width: 1023px) 38vw, 31vw" preload={i === 0} fetchPriority={i === 0 ? "high" : undefined} loading={i === 0 ? undefined : "eager"} draggable={false} />
-              </Link>
-            </div>
-          ))}
-        </div>
+  return <section ref={root} id="hero" className={`museum-hero museum-tone--${studies[active].tone}`} aria-label={t("藝術與日常，三件展品", "Art and the everyday, three pieces on show")} aria-roledescription={t("輪播", "carousel")}
+    onKeyDown={event => { if (event.key === "ArrowRight" || event.key === "ArrowLeft") { event.preventDefault(); move(event.key === "ArrowRight" ? 1 : -1); } }}
+    onPointerMove={event => {
+      if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const bounds = event.currentTarget.getBoundingClientRect();
+      event.currentTarget.style.setProperty("--museum-x", `${(event.clientX - bounds.left - bounds.width / 2) * .012}px`);
+      event.currentTarget.style.setProperty("--museum-y", `${(event.clientY - bounds.top - bounds.height / 2) * .012}px`);
+    }} onPointerLeave={event => { event.currentTarget.style.setProperty("--museum-x", "0px"); event.currentTarget.style.setProperty("--museum-y", "0px"); }}>
+    <div className="museum-architecture" aria-hidden="true" data-hero-reveal="">
+      {studies.map((study, i) => <div key={study.tone} className={`museum-drawing museum-tone--${study.tone}`} data-active={active === i}><ArchitectureLines variant={i} /></div>)}
+    </div>
+    <div className="museum-intro" data-hero-reveal="">
+      <p className="museum-kicker">ART / CRAFT / EVERYDAY</p>
+      <h1 className="museum-title">Art<br /><span>as Life.</span></h1>
+      <p className="museum-subtitle tc">{t("讓日常，成為一件作品。", "A place for art in everyday life.")}</p>
+      <p className="museum-description tc">{t("從建築的線條，到掌心的細節。\n在一盞茶、一件器物之間，收藏生活的美。", "From architectural lines to the detail in your hand.\nA little art, in a cup of tea or an everyday object.")}</p>
+      <Link href={localeHref(lang, "/collections/all")} className="museum-explore">{t("探索作品", "Explore the collection")}<span aria-hidden="true">↗</span></Link>
+    </div>
+    <div className="museum-objects" data-hero-reveal="" onPointerEnter={() => { hold.current = true; }} onPointerLeave={() => { hold.current = false; }}
+      onTouchStart={event => { touch.current = event.touches[0].clientX; }}
+      onTouchEnd={event => { if (touch.current !== null) { const delta = event.changedTouches[0].clientX - touch.current; if (Math.abs(delta) > 45) move(delta < 0 ? 1 : -1); } touch.current = null; }}>
+      {hero.slides.map((slide, i) => <figure key={slide.id} className="museum-object" data-active={active === i} aria-hidden={active !== i}>
+        <Link href={localeHref(lang, slide.href)} tabIndex={active === i ? 0 : -1} aria-label={t(`探索${slide.label}`, `Explore ${slide.label}`)}>
+          <Image src={slide.src} alt={slide.alt} width={slide.w} height={slide.h} sizes="(max-width:767px) 65vw, 32vw" preload={i === 0} loading={i === 0 ? undefined : "eager"} draggable={false} />
+        </Link>
+        <figcaption><span>{String(i + 1).padStart(2, "0")} / {slide.en}</span><span>{slide.label}</span></figcaption>
+      </figure>)}
+    </div>
+    <div className="museum-bottom" data-hero-reveal="">
+      <a className="museum-scroll" href="#manifesto"><span aria-hidden="true">↓</span>{t("沿著線條，走進日常", "Follow the lines into everyday life")}</a>
+      <div className="museum-study"><span>FORM {String(active + 1).padStart(2, "0")}</span><p>{studies[active].word}</p></div>
+      <div className="museum-controls" aria-label={t("選擇展品", "Choose a piece")}>
+        {hero.slides.map((slide, i) => <button key={slide.id} type="button" aria-pressed={active === i} aria-label={t(`觀看${slide.label}`, `View ${slide.label}`)} onClick={() => setActive(i)}><span>{String(i + 1).padStart(2, "0")}</span></button>)}
+        <button type="button" className="museum-pause" aria-label={paused ? t("繼續輪播", "Play slideshow") : t("暫停輪播", "Pause slideshow")} onClick={() => setPaused(value => !value)}><span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span></button>
       </div>
-      {/* the split letters are visual only; the sr-only copy comes last so `.orbit-title > span + span` spacing is unchanged */}
-      <h1 className="orbit-title" data-hero-reveal=""><span aria-hidden="true" data-animation="split" data-split="chars" data-from="150" data-duration="1.5" data-ease="power4.out">EVERYDAY</span><span aria-hidden="true" data-animation="split" data-split="chars" data-from="150" data-duration="1.5" data-ease="power4.out">LUXURIES</span><span className="sr-only">Everyday Luxuries</span></h1>
-      <p className="orbit-statement tc" data-hero-reveal=""><span>{hero.subtitle}</span></p>
-      <button type="button" className="orbit-pause tc" data-hero-reveal=""
-        aria-label={paused ? t("繼續播放輪播", "Play the carousel") : t("暫停輪播", "Pause the carousel")}
-        onClick={() => { pausedRef.current = !pausedRef.current; setPaused(pausedRef.current); }}>
-        <span className={`orbit-pause-icon${paused ? " is-paused" : ""}`} aria-hidden="true" />
-      </button>
-    </section>
-  );
+    </div>
+    <span className="museum-edge-label" aria-hidden="true">CHARM VILLA — OBJECTS & SPACES</span>
+  </section>;
 }

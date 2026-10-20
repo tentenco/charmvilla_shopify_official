@@ -1,3 +1,28 @@
+# Museum architecture visual proposal — 2026-10-20
+
+Status: `in_progress`
+
+## Active task
+- 使用者要求依客戶截圖直接改版並提供預覽。
+- 客戶方向：保留網站架構；極致工藝 × 前衛極簡；世界美術館建築線條，以多色線條與立體浮現呈現。
+- 範圍：首頁 hero、品牌故事背景與首頁色彩／排版；保留原商品照片、分類、商品資料與交易隔離。
+- 授權推送 design/museum-preview，部署獨立 charmvilla-design-preview；不修改 main / www.charmvilla.com。
+- 基準 2520ea5，工作樹乾淨，fetch 成功。
+- 完成條件：3 個建築形態可切換；雙語 1440/390、reduced-motion、鍵盤及照片載入檢查；發布測試 URL 並確認正式部署不變。
+
+## Steps
+1. completed：核對客戶需求、正式建築資料與現行結構。
+2. in_progress：建立原創建築線稿、首頁展示與故事背景。
+3. pending：Node 24 check、本機瀏覽器、測試站部署與公開驗證。
+
+## FIFO queue
+無。
+
+## Resume
+完成視覺實作並驗證；不變更 Shopify／正式站。
+
+## Previous completed setup
+
 # Design preview setup — 2026-10-20
 
 Status: `completed`
