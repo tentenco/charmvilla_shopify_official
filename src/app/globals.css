@@ -1829,7 +1829,7 @@ main:has(> .tasks-page), .catalog-shell:has(> main > .tasks-page), .catalog-shel
 .cookie-banner button:focus-visible { outline: 2px solid #927545; outline-offset: 3px; }
 
 /* Only rendered in the isolated design-review environment. */
-.design-preview-notice { position: fixed; top: 80px; right: var(--page-gutter); z-index: 9999; width: max-content; max-width: calc(100vw - 32px); padding: 4px 8px; border-radius: 4px; background: #e7e3d9; color: #706d63; font: 10px/1.6 system-ui, sans-serif; text-align: center; pointer-events: none; }
+.design-preview-notice { position: fixed; top: 48px; right: var(--page-gutter); z-index: 9999; width: max-content; max-width: calc(100vw - 32px); padding: 4px 8px; border-radius: 4px; background: #e7e3d9; color: #706d63; font: 10px/1.6 system-ui, sans-serif; text-align: center; pointer-events: none; }
 html.cart--open .design-preview-notice { display: none; }
 
 /* Museum architecture study, preview v1. Same content sequence and original photographs. */
