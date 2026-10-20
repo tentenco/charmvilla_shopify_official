@@ -3,7 +3,17 @@ import type { NextConfig } from "next";
 // Isolated checkout test build folders; ignored by Vercel. Tests never replace production product mappings.
 const testBuild = !process.env.VERCEL && /^\.next\/test-(shopify|local)$/.test(process.env.CV_TEST_BUILD ?? "") ? process.env.CV_TEST_BUILD : null;
 
+// The review project and this dedicated branch must never inherit live commerce.
+const designPreview = process.env.CV_DESIGN_PREVIEW === "true" || process.env.VERCEL_GIT_COMMIT_REF === "design/museum-preview";
+
 const nextConfig: NextConfig = {
+  ...(designPreview ? { env: {
+    NEXT_PUBLIC_DESIGN_PREVIEW: "true",
+    NEXT_PUBLIC_COMMERCE_MODE: "local",
+    NEXT_PUBLIC_ACCOUNTS_OPEN: "false",
+    NEXT_PUBLIC_GA4_MEASUREMENT_ID: "",
+    NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN: "",
+  } } : {}),
   ...(testBuild ? { distDir: testBuild } : {}),
   devIndicators: false,
   // Retired product URLs, in both languages. English is unprefixed and Chinese lives under /zh (user 2026-10-13); the "/en" entries

@@ -1,3 +1,12 @@
+# 2026-10-20 獨立設計測試站
+
+- 本工作樹為 design/museum-preview，來源 main 4a24183；正式工作樹 WIP 保留。
+- 站台與操作方式見 [DESIGN_PREVIEW.md](DESIGN_PREVIEW.md)。固定測試網址 https://charmvilla-design-preview.vercel.app/ 。
+- 本輪建立環境；美術館視覺尚未實作。交易／會員／訂閱隔離，本機資料非即時庫存。沒有 Shopify 寫入。
+- 驗證與部署證據：docs/qa/2026-10-20-design-preview；最終狀態見 PLAN.md。
+
+---
+
 # CHARM VILLA 開發交接
 
 ## 2026-10-16 IG 三款攝影首稿（僅交付試稿）

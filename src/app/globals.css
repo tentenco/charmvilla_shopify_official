@@ -1827,3 +1827,6 @@ main:has(> .tasks-page), .catalog-shell:has(> main > .tasks-page), .catalog-shel
 .cookie-banner button { flex: 1; min-height: 44px; padding: 9px 12px; border: 1px solid currentColor; cursor: pointer; }
 .cookie-banner button:last-child { background: #292723; color: #f4f2e9; }
 .cookie-banner button:focus-visible { outline: 2px solid #927545; outline-offset: 3px; }
+
+/* Only rendered in the isolated design-review environment. */
+.design-preview-notice { position: fixed; left: 50%; bottom: max(12px, env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 9999; width: max-content; max-width: calc(100vw - 32px); padding: 8px 14px; border: 1px solid #b9ad95; border-radius: 4px; background: #24221eee; color: #f7f3e9; font: 11px/1.6 system-ui, sans-serif; text-align: center; pointer-events: none; }

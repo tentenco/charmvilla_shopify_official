@@ -23,6 +23,7 @@ export function useNewsletterSubmit() {
       const res = await fetch("/api/newsletter", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: data.get("email"), company: data.get("company") }) });
       const json = (await res.json().catch(() => ({}))) as { error?: string };
       if (res.ok) { setDone(true); form.reset(); setNote(t("謝謝訂閱！新品與活動消息會寄到你的信箱。", "Thank you for subscribing. News will arrive in your inbox.")); }
+      else if (json.error === "design_preview") setNote(t("此為設計測試站，不會送出訂閱資料。", "This is a design preview. No subscription was submitted."));
       else if (json.error === "not_configured") setNote(t("電子報將於 Shopify 串接完成後開放訂閱。", "The newsletter is not open yet."));
       else if (json.error === "bad_request") setNote(t("請填寫正確的 Email。", "Please enter a valid email address."));
       else setNote(t(`訂閱沒有成功，請稍後再試，或來信 ${supportEmail}。`, `We couldn't subscribe you. Please try again later, or email us at ${supportEmail}.`));

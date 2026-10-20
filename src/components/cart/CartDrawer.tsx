@@ -83,7 +83,7 @@ export default function CartDrawer() {
                 ? <a href={cart.checkoutUrl} aria-disabled={cart.busy} onClick={async e => { e.preventDefault(); if (cart.busy) return; const url = await cart.checkout(); if (url) window.location.assign(url); }} className="catalog-button cart-checkout tc">{t("前往結帳", "Go to checkout")}</a>
                 : <button type="button" className="catalog-button cart-checkout tc" disabled title={t("金流串接完成後開放", "Online checkout is not open yet")}>{t("前往結帳", "Go to checkout")}</button>}
               <p className="cart-note tc"><Link href={localeHref(lang, "/policy#us-shipping")} onClick={() => cart.setOpen(false)} className="underline underline-offset-4">{t("運送、付款與退換貨說明", "Delivery, payment and returns")}</Link></p>
-              {cart.mode === "local" && <p className="cart-note tc">{t(`線上結帳即將開放；目前可先加入購物車，或來信 ${supportEmail} 洽詢。`, `Online checkout is not open yet. For now you can add pieces to your bag, or email us at ${supportEmail}.`)}</p>}
+              {cart.mode === "local" && <p className="cart-note tc">{process.env.NEXT_PUBLIC_DESIGN_PREVIEW === "true" ? t("此為設計測試站，購物車僅供操作預覽，不會建立訂單。", "This is a design preview. Your bag is for testing only; no order will be placed.") : t(`線上結帳即將開放；目前可先加入購物車，或來信 ${supportEmail} 洽詢。`, `Online checkout is not open yet. For now you can add pieces to your bag, or email us at ${supportEmail}.`)}</p>}
             </footer>
           </>
         )}

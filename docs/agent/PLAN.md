@@ -1,3 +1,29 @@
+# Design preview setup — 2026-10-20
+
+Status: `in_progress`
+
+## Active task
+- 建立可分享的獨立官網測試站，供後續美術館建築線條視覺修改。
+- 授權：建立、推送測試分支及部署獨立測試專案；不改正式 main、正式專案或 Shopify 資料。
+- 基準：origin/main 4a241830b03312de521a7217e103ba7538dd1a7a，與正式部署一致。
+- 工作樹：/Users/kuan/Documents/Codex/charmvilla-design-preview；分支 design/museum-preview。
+- 原工作樹既有文件與圖片 WIP 全部保留。
+- 完成條件：固定匿名可訪問 URL；雙語桌手機可瀏覽；本機商品展示、禁止交易／會員／訂閱寫入；noindex；正式部署 ID 不變。
+- 本次建立基礎測試站，不實作尚未定稿的美術館視覺。
+
+## Steps and evidence
+1. completed：核對正式 Git／Vercel 與建立隔離 worktree。
+2. in_progress：設計預覽開關、審稿提示、隔離交易。
+3. pending：Node 24 check、測試站部署、瀏覽器與正式部署對照。
+
+## FIFO queue
+無。
+
+## Resume
+完成本輪測試站並交付網址。
+
+## Previous plan (preserved)
+
 # Active Agent Plan
 
 Status: `completed`
