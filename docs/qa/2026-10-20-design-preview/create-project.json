@@ -1,0 +1,17 @@
+{
+  "name": "charmvilla-design-preview",
+  "framework": "nextjs",
+  "ssoProtection": null,
+  "environmentVariables": [
+    {
+      "key": "CV_DESIGN_PREVIEW",
+      "value": "true",
+      "target": [
+        "production",
+        "preview",
+        "development"
+      ],
+      "type": "plain"
+    }
+  ]
+}

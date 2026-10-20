@@ -1,0 +1,42 @@
+[
+  {
+    "path": "/account",
+    "status": 307,
+    "location": "https://charmvilla-design-preview.vercel.app/"
+  },
+  {
+    "path": "/zh/account",
+    "status": 307,
+    "location": "https://charmvilla-design-preview.vercel.app/zh"
+  },
+  {
+    "path": "/account/reset/test",
+    "status": 307,
+    "location": "https://charmvilla-design-preview.vercel.app/"
+  },
+  {
+    "path": "/en/account",
+    "status": 307,
+    "location": "https://charmvilla-design-preview.vercel.app/"
+  },
+  {
+    "path": "/collections/tea",
+    "status": 200
+  },
+  {
+    "path": "/zh/collections/tea",
+    "status": 200
+  },
+  {
+    "path": "/products/christmas-gift-box",
+    "status": 200
+  },
+  {
+    "path": "/zh/products/christmas-gift-box",
+    "status": 200
+  },
+  {
+    "path": "/api/products",
+    "status": 200
+  }
+]

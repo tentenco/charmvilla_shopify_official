@@ -1,0 +1,50 @@
+[
+  {
+    "path": "/",
+    "method": "GET",
+    "status": 200,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "path": "/zh",
+    "method": "GET",
+    "status": 200,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "path": "/api/cart",
+    "method": "POST",
+    "status": 403,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "path": "/api/cart",
+    "method": "PATCH",
+    "status": 403,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "path": "/api/cart",
+    "method": "DELETE",
+    "status": 403,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "path": "/api/account/register",
+    "method": "POST",
+    "status": 403,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "path": "/api/newsletter",
+    "method": "POST",
+    "status": 403,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "path": "/api/account/me",
+    "method": "GET",
+    "status": 403,
+    "noindex": "noindex, nofollow"
+  }
+]

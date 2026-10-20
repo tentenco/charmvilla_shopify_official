@@ -1,6 +1,6 @@
 # Design preview setup — 2026-10-20
 
-Status: `in_progress`
+Status: `completed`
 
 ## Active task
 - 建立可分享的獨立官網測試站，供後續美術館建築線條視覺修改。
@@ -13,14 +13,24 @@ Status: `in_progress`
 
 ## Steps and evidence
 1. completed：核對正式 Git／Vercel 與建立隔離 worktree。
-2. in_progress：設計預覽開關、審稿提示、隔離交易。
-3. pending：Node 24 check、測試站部署、瀏覽器與正式部署對照。
+2. completed：設計預覽開關、審稿提示、隔離交易。
+3. completed：Node 24 check、測試站部署、瀏覽器與正式部署對照。
+
+## Verification and delivery
+- Node 24 `npm run check` 通過，0 errors / 7 既有 warnings；沒有修改 dependencies。
+- 應用提交 e1b2a2f 已推送 design/museum-preview。初次 push 因 active GitHub lumifamily1613-cell 無權限失敗；改用既有 kuanyu16 的 repo admin 憑證，只在該次子程序生效，全域帳號不變。
+- 獨立 Vercel charmvilla-design-preview：dpl_m1rfUkTetav9Sho2ddkesXV9ERWF，READY，固定匿名 URL https://charmvilla-design-preview.vercel.app/ 。沒有 Git 自動部署連結；後續用文件中的明確 CLI 命令更新。
+- HTTP：雙語首頁／分類／商品、產品 API 200；會員頁同站 307；交易／帳號／訂閱 API 403；noindex header 通過。
+- Ego 33：雙語首頁 1440×900 / 390×844 無溢出／runtime errors／GA tracking；桌手機截圖已檢視；reduced-motion=true 通過。商品頁路由與標題確認；商品首屏截圖拍攝時主圖尚未出現，不當作完整商品影像驗收。
+- 電子報錯誤流程顯示「此為設計測試站，不會送出訂閱資料。」；未送資料到 Shopify。空購物車可開啟；未驗證付款／真實訂單，測試站不提供此功能。
+- 正式部署仍 dpl_HZVUjqj8nUtUt6LbNKDzdD47h6sf，遠端 main 仍 4a241830b03312de521a7217e103ba7538dd1a7a。
+- QA 全在 docs/qa/2026-10-20-design-preview。美術館新視覺未實作。
 
 ## FIFO queue
 無。
 
 ## Resume
-完成本輪測試站並交付網址。
+測試站已建立；後續改版從此 worktree / design/museum-preview 接續。未授權正式上線，不推 main。
 
 ## Previous plan (preserved)
 

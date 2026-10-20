@@ -1,0 +1,38 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "lang": "en",
+    "overflow": false,
+    "notice": "Design preview · No orders · Product details are for layout review",
+    "errors": [],
+    "tracking": []
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "lang": "zh-Hant",
+    "overflow": false,
+    "notice": "設計測試站 · 不開放下單｜商品資訊僅供版型預覽",
+    "errors": [],
+    "tracking": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "lang": "en",
+    "overflow": false,
+    "notice": "Design preview · No orders · Product details are for layout review",
+    "errors": [],
+    "tracking": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "lang": "zh-Hant",
+    "overflow": false,
+    "notice": "設計測試站 · 不開放下單｜商品資訊僅供版型預覽",
+    "errors": [],
+    "tracking": []
+  }
+]
