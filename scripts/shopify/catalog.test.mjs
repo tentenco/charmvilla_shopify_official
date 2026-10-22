@@ -6,6 +6,30 @@ const snapshot = JSON.parse(readFileSync(new URL('../../src/data/shopify-product
 const image = { src: '/approved-visual.webp', alt: 'Approved visual', w: 1200, h: 1500 };
 const local = { slug: 'kyoto-gift-box', name: '京都版', english: 'KYOTO', image, views: [{ label: 'Front', image }], scenes: [image], category: 'tea', description: 'old', summary: 'old', facts: [], story: { title: 'old', body: 'old' }, price: { amount: 999, currency: 'USD' }, preOrder: true, preOrderRemaining: 100, giftBox: { pieces: 6, series: 'Classic', contents: [] } };
 
+test('Packaging CMS localizes notices without changing variant identity, prices or approved photos', () => {
+  const source = structuredClone(snapshot.products['christmas-gift-box']);
+  const product = {...local, slug:'christmas-gift-box'};
+  const details = {version:1, notice:{zh:'紙盒顏色隨機出貨',en:'Paper box color is assigned at random'}, imageNote:{zh:'照片僅供參考',en:'Photos are for reference'}};
+  for (const lang of ['zh','en']) {
+    const original = applyShopifyProduct(product, source, lang);
+    const withDetails = {...source,metafields:[...source.metafields,{namespace:'custom',key:'packaging_details',type:'json',value:JSON.stringify(details)}]};
+    const result = applyShopifyProduct(product, withDetails, lang);
+    assert.equal(result.packagingNote, details.notice[lang]);
+    assert.equal(result.imageNote, details.imageNote[lang]);
+    assert.deepEqual(result.giftBox.choices, original.giftBox.choices);
+    assert.deepEqual(result.price, original.price);
+    assert.equal(result.image, original.image);
+    assert.equal(original.packagingNote, undefined);
+  }
+  assert.equal(applyShopifyProduct(local,snapshot.products['kyoto-gift-box'],'zh').packagingNote, undefined);
+});
+
+test('Incomplete packaging CMS does not silently show untranslated terms', () => {
+  const source = structuredClone(snapshot.products['christmas-gift-box']);
+  source.metafields.push({namespace:'custom',key:'packaging_details',type:'json',value:JSON.stringify({version:1,notice:{zh:'隨機'},imageNote:{zh:'照片'}})});
+  assert.throws(()=>applyShopifyProduct(local,source,'en'), /Invalid packaging details/);
+});
+
 test('Shopify replaces price and stock while preserving approved image objects', () => {
   const source = structuredClone(snapshot.products['kyoto-gift-box']);
   source.variants[0].price = '61.25'; source.availableForSale = false;

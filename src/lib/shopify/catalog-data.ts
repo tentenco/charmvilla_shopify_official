@@ -29,6 +29,15 @@ export function chineseCopy(source: ShopifyProduct): ShopifyChineseCopy | undefi
   return copy;
 }
 
+/** Merchant-owned bilingual packaging notice; absent on products without special packaging terms. */
+function packagingDetails(source: ShopifyProduct) {
+  const raw = source.metafields.find(m => m.namespace === "custom" && m.key === "packaging_details")?.value;
+  if (!raw) return undefined;
+  const data = JSON.parse(raw) as { version: number; notice: Record<Locale, string>; imageNote: Record<Locale, string> };
+  if (data.version !== 1 || ["zh", "en"].some(lang => typeof data.notice?.[lang as Locale] !== "string" || !data.notice[lang as Locale].trim() || typeof data.imageNote?.[lang as Locale] !== "string")) throw new Error(`Invalid packaging details: ${source.handle}`);
+  return data;
+}
+
 /** Merchant-owned campaign setting. Explicit false also disables legacy preorder tags. */
 function preorderDetails(source: ShopifyProduct, lang: Locale) {
   const raw = source.metafields.find(m => m.namespace === "custom" && m.key === "preorder_details")?.value;
@@ -72,6 +81,7 @@ export function applyShopifyProduct(local: Product, source: ShopifyProduct, lang
   const variants = source.variants;
   const translated = Object.fromEntries(source.translations.map(x => [x.key, x.value]));
   const copy = lang === "zh" ? chineseCopy(source) : undefined;
+  const packaging = packagingDetails(source);
   const sections = sectionsOf((lang === "zh" && translated.body_html) || source.descriptionHtml);
   const meta = Object.fromEntries(source.metafields.map(m => [m.key, m.value]));
   const countMatch = htmlText(source.descriptionHtml).match(/contain(?:s|ing)\s+(\d+|two|six|twelve|fifteen|eighteen)\s+Goldfish Tea Bags/i);
@@ -133,7 +143,8 @@ export function applyShopifyProduct(local: Product, source: ShopifyProduct, lang
     ...local,
     teaNotes,
     brew: copy?.brew ? { ...local.brew, ...copy.brew } : local.brew,
-    imageNote: copy?.imageNote,
+    imageNote: packaging?.imageNote[lang] ?? copy?.imageNote,
+    packagingNote: packaging?.notice[lang],
     name: lang === "en" ? source.title : translated.title || copy?.title || (local.slug === "snowflake-gift-box" ? "聖誕心意禮（2 入）" : local.slug === "christmas-gift-box" ? "聖誕禮盒（12 入）" : local.name),
     english: source.title.toUpperCase(), description: copy && !translated.body_html ? copy.description : description,
     summary: copy ? localizedFacts?.find(f => f.label === "販售單位")?.value ?? copy.description : meta.short_product_desc || (pieces ? t(`${pieces} 入小金魚茶包`, `${pieces} Goldfish Tea Bags`) : meta.product_contents || ""),
@@ -143,7 +154,7 @@ export function applyShopifyProduct(local: Product, source: ShopifyProduct, lang
     soldOut: !source.availableForSale || !variants.some(v => v.availableForSale), preOrder, preOrderPolicy: preorder?.policy, preOrderRemaining: source.preorderBatch?.remaining, preOrderUnit: source.preorderBatch?.unit, priceTbd: false, teaTbd: false,
     shopify: { handle: source.handle, variantId: variants.length === 1 ? variants[0].id : "" },
     shopifyData: { productId: source.id, published: source.published, status: source.status, scheduledPreOrder, variants, mixAvailable: source.preorderBatch?.mixAvailable },
-    giftBox: local.giftBox ? { ...local.giftBox, pieces, contents: [], choices, mixBoxes: source.preorderBatch?.mixBoxes, choiceLabel: copy?.choiceLabel || (hasTea && hasColor ? t("選擇茶款與盒色", "Choose your tea and box color") : hasColor ? t("選擇包裝", "Choose your packaging") : t("選擇茶款", "Choose your tea")) } : undefined,
+    giftBox: local.giftBox ? { ...local.giftBox, pieces, contents: [], choices, mixBoxes: source.preorderBatch?.mixBoxes, choiceLabel: local.slug === "christmas-gift-box" ? t("選擇茶款與盒蓋", "Choose your tea and lid") : copy?.choiceLabel || (hasTea && hasColor ? t("選擇茶款與盒色", "Choose your tea and box color") : hasColor ? t("選擇包裝", "Choose your packaging") : t("選擇茶款", "Choose your tea")) } : undefined,
     // Editorial leaf photographs and general brewing guide remain; product-specific facts above come only from Shopify.
   };
 }

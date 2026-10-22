@@ -72,7 +72,7 @@ export default function AddToCart({ product }: { product: Product }) {
         {[...new Set(choices.map(c => c.selection!.tea))].map(value => <option key={value} value={value}>{value}{unavailableCombination(value, lid) && t("（售罄）", " (Sold out)")}</option>)}
       </select>
       <label className="tc" htmlFor={`lid-${product.slug}`}>{lidLabel}</label>
-      <select id={`lid-${product.slug}`} value={lid} onChange={e => selectCombination(tea, e.target.value)}>
+      <select id={`lid-${product.slug}`} value={lid} aria-describedby={product.packagingNote ? `packaging-${product.slug}` : undefined} onChange={e => selectCombination(tea, e.target.value)}>
         <option value="">{lidPlaceholder}</option>
         {[...new Set(choices.map(c => c.selection!.lid))].map(value => <option key={value} value={value}>{value}{unavailableCombination(tea, value) && t("（售罄）", " (Sold out)")}</option>)}
       </select>
@@ -86,6 +86,7 @@ export default function AddToCart({ product }: { product: Product }) {
       {/* the chosen packaging in one line (user 2026-10-07: the 包裝選項 texts 「可以精簡呈現在這區」) */}
       {option !== undefined && choices[option]?.note && <p className="product-choice-note tc">{choices[option].note}</p>}
     </div>}
+    {product.packagingNote && <p id={`packaging-${product.slug}`} className="product-mix-help tc">{product.packagingNote}</p>}
     {product.preOrder && product.preOrderPolicy && <aside className="product-preorder-notice tc" aria-label={t("預購說明", "Pre-order information")}>
       <p>{product.preOrderPolicy.shipping}</p>
       <details><summary>{t("預購付款與取消", "Pre-order payment and cancellation")}</summary>

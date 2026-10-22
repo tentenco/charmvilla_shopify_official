@@ -94,6 +94,8 @@ export type Product = {
   /** Shown but not sold at launch (客戶答覆 B1–B4, 2026-10-12): no price (NT$ or US$), no bag / pre-order buttons, no Offer in JSON-LD; photographs and text stay. */
   displayOnly?: boolean;
   imageNote?: string;
+  /** Packaging notice beside the purchase options, supplied with the product content. */
+  packagingNote?: string;
   /** Shopify handle + variant GID from src/data/shopify-map.json; empty until the store is connected. */
   shopify?: { handle: string; variantId: string };
   shopifyData?: { productId: string; published: boolean; status: string; scheduledPreOrder?: boolean; variants: ShopifyVariant[]; mixAvailable?: boolean };
