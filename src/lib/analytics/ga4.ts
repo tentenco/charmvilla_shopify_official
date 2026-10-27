@@ -17,10 +17,17 @@ export const SETTINGS_EVENT = "cv-cookie-settings";
 const shortId = (id: string) => id.split("/").pop()!;
 let initialized = false;
 let privacyReady: Promise<void> | undefined;
+let analyticsChoice: Consent | undefined;
 let marketingChoice: Consent | undefined;
+let pendingCampaign: { fields: Record<string, string>; capturedAt: number } | undefined;
+const CAMPAIGN_PARAMETERS = {
+  utm_source: "campaign_source", utm_medium: "campaign_medium", utm_campaign: "campaign_name",
+  utm_id: "campaign_id", utm_term: "campaign_term", utm_content: "campaign_content",
+};
 
 export function consent(): Consent | null {
   if (typeof window === "undefined") return null;
+  if (analyticsChoice !== undefined) return analyticsChoice;
   try { const v = localStorage.getItem(CONSENT_KEY); return v === "granted" || v === "denied" ? v : null; } catch { return null; }
 }
 export function marketingConsent(): Consent | null {
@@ -41,12 +48,28 @@ export function commerceReferrer(raw: string) {
 export function cleanUrl(raw: string, campaign = false) {
   try {
     const u = new URL(raw); const params = new URLSearchParams();
-    if (campaign) for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid"]) { const value = u.searchParams.get(key); if (value) params.set(key, value.slice(0, 120)); }
+    if (!["https:", "http:"].includes(u.protocol)) return "";
+    if (/^\/(?:en\/|zh\/)?account(?:\/|$)/.test(u.pathname)) return `${u.origin}/account`;
+    if (/^\/checkouts?(?:\/|$)/.test(u.pathname)) return `${u.origin}/checkout`;
+    if (commerceReferrer(raw) && !/^(www\.)?charmvilla\.com$/.test(u.hostname)) return `${u.origin}/`;
+    if (campaign) for (const key of [...Object.keys(CAMPAIGN_PARAMETERS), "gclid"]) { const value = u.searchParams.get(key); if (value) params.set(key, value.slice(0, 120)); }
     return u.origin + u.pathname + (params.size ? `?${params}` : "");
   } catch { return ""; }
 }
+function captureCampaign() {
+  if (initialized || !analyticsEnabled() || consent() === "denied") return;
+  const params = new URLSearchParams(location.search);
+  const fields: Record<string, string> = {};
+  for (const [parameter, field] of Object.entries(CAMPAIGN_PARAMETERS)) {
+    const value = params.get(parameter);
+    if (value) fields[field] = value.slice(0, 120);
+  }
+  if (Object.keys(fields).length) pendingCampaign = { fields, capturedAt: Date.now() };
+}
 function bootstrap() {
-  if (initialized || !analyticsEnabled() || consent() !== "granted") return;
+  if (!analyticsEnabled() || consent() !== "granted") return;
+  captureCampaign();
+  if (initialized) { loadGoogleTag(); return; }
   initialized = true;
   window.dataLayer ??= [];
   // gtag requires an Arguments object (not an Array) in the data layer.
@@ -56,10 +79,19 @@ function bootstrap() {
   window.gtag("consent", "update", { analytics_storage: "granted" });
   window.gtag("js", new Date());
   window.gtag("set", "linker", { domains: ["www.charmvilla.com", "account.charmvilla.us", "zcs0bg-10.myshopify.com", "shop.app"] });
-  window.gtag("config", GA_ID, { send_page_view: false, page_location: cleanUrl(location.href, true), page_referrer: cleanUrl(document.referrer), ignore_referrer: commerceReferrer(document.referrer), allow_google_signals: false, allow_ad_personalization_signals: false, ...(debugMode() ? { debug_mode: true } : {}) });
-  const script = document.createElement("script"); script.async = true; script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`; script.id = "cv-ga4"; document.head.append(script);
+  const campaign = pendingCampaign && Date.now() - pendingCampaign.capturedAt < 30 * 60 * 1000 ? pendingCampaign.fields : {};
+  window.gtag("config", GA_ID, { send_page_view: false, page_location: cleanUrl(location.href, true), page_referrer: cleanUrl(document.referrer), ignore_referrer: commerceReferrer(document.referrer), ...campaign, allow_google_signals: false, allow_ad_personalization_signals: false, ...(debugMode() ? { debug_mode: true } : {}) });
+  pendingCampaign = undefined;
+  loadGoogleTag();
+}
+function loadGoogleTag() {
+  if (document.getElementById("cv-ga4")) return;
+  const script = document.createElement("script"); script.async = true; script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`; script.id = "cv-ga4";
+  script.onerror = () => script.remove();
+  document.head.append(script);
 }
 export function track(name: string, params: Record<string, unknown> = {}) {
+  captureCampaign();
   if (!analyticsEnabled() || consent() !== "granted" || /\/(account|tasks)(\/|$)/.test(location.pathname)) return false;
   bootstrap();
   window.gtag?.("set", { page_location: cleanUrl(location.href, true), page_referrer: cleanUrl(document.referrer) });
@@ -69,15 +101,29 @@ export function track(name: string, params: Record<string, unknown> = {}) {
 export function setConsent(value: Consent, marketing: Consent = "denied") {
   const advertising = value === "granted" && !navigator.globalPrivacyControl ? marketing : "denied";
   try { localStorage.setItem(MARKETING_CONSENT_KEY, advertising); marketingChoice = undefined; } catch { marketingChoice = advertising; }
-  try { localStorage.setItem(CONSENT_KEY, value); } catch { /* storage blocked: no analytics */ }
-  if (value === "granted") bootstrap();
-  else {
+  try { localStorage.setItem(CONSENT_KEY, value); analyticsChoice = undefined; } catch { analyticsChoice = value; }
+  applyAnalyticsConsent();
+  window.dispatchEvent(new Event(CONSENT_EVENT));
+  void syncShopifyConsent();
+}
+function applyAnalyticsConsent() {
+  const allowed = consent() === "granted";
+  Object.assign(window, { [`ga-disable-${GA_ID}`]: !allowed });
+  if (allowed) {
+    bootstrap();
+    window.gtag?.("consent", "update", { analytics_storage: "granted" });
+  } else {
+    pendingCampaign = undefined;
     window.gtag?.("consent", "update", { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
     for (const name of document.cookie.split(";").map(c => c.trim().split("=")[0]).filter(n => n === "_ga" || n.startsWith("_ga_"))) {
       for (const domain of ["", location.hostname, ".charmvilla.com"]) document.cookie = `${name}=; Max-Age=0; Path=/;${domain ? ` Domain=${domain};` : ""} SameSite=Lax; Secure`;
     }
   }
-  if (value === "granted") window.gtag?.("consent", "update", { analytics_storage: "granted" });
+}
+export function refreshAnalyticsConsent() {
+  analyticsChoice = undefined;
+  marketingChoice = undefined;
+  applyAnalyticsConsent();
   window.dispatchEvent(new Event(CONSENT_EVENT));
   void syncShopifyConsent();
 }

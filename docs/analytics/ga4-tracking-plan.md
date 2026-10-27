@@ -1,5 +1,12 @@
 # CHARM VILLA GA4 電商追蹤
 
+## 2026-10-27 追蹤修復（正式驗收狀態見本輪QA）
+
+- 同意前的UTM只在分頁記憶體保留30分鐘，不寫campaign Cookie／storage，不載入GA；拒絕即清除。之後同意時採Google正式campaign欄位，保留utm_id，頁面URL仍指向目前頁面。分頁關閉／重新載入前未同意的來源與瀏覽不回補。
+- SDK載入失敗可在下一個已同意的追蹤動作重試；單次初始化與原事件隊列保持。跨分頁撤回同步Consent Mode與ga-disable，重新同意重設頁面／商品／清單／購物車去重狀態。storage不可用時只採當前分頁的明確選擇。
+- URL清理也遮蔽account／checkout的路徑token，GEO保留ttclid／tt_campaignid。未修改Shopify checkout pixel、同意政策或GA4過濾器。
+- [完整修復與證據](../qa/2026-10-27-analytics-self-repair/README.md)。
+
 ## 2026-10-27 ChatGPT 廣告量測（已隨 d00b871 正式發布）
 
 GA4 與 ChatGPT Pixel 使用分開同意，原有分析同意不視為廣告同意。Cookie banner 新增「允許分析與廣告」，GA4 廣告同意與 Shopify marketing 仍維持 denied／false。ChatGPT 只新增同意後的 `page_viewed`，不修改既有 GA4 checkout pixel 或購買事件；[實作、同意與驗證](chatgpt-pixel.md)。以下 10 月 15 日內容保留作既有 GA4 契約。

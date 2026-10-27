@@ -1,7 +1,7 @@
 "use client";
 // Right-hand cart drawer (Bang & Olufsen style): lines with quantity steppers, subtotal, shipping note, checkout.
 import { useEffect, useRef } from "react";
-import { CONSENT_EVENT, track } from "@/lib/analytics/ga4";
+import { CONSENT_EVENT, consent, track } from "@/lib/analytics/ga4";
 import Link from "next/link";
 import { useCart } from "./CartProvider";
 import { productHref, categoryHref } from "@/data/catalog";
@@ -18,6 +18,7 @@ export default function CartDrawer() {
   useEffect(() => {
     if (!cart.open) { viewed.current = false; return; }
     const send = () => {
+      if (consent() !== "granted") { viewed.current = false; return; }
       if (!viewed.current && cart.ready && cart.lines.length) viewed.current = track("view_cart", { currency: cart.currency, value: cart.subtotal, items: cart.lines.map(l => ({ item_id: l.variantId?.split("/").pop() ?? l.slug, item_name: l.name, item_brand: "CHARM VILLA", price: l.unitAmount, quantity: l.quantity })) });
     };
     send(); window.addEventListener(CONSENT_EVENT, send);

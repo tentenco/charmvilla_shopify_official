@@ -52,7 +52,7 @@ test("advertising attribution survives while cart, account, arbitrary redirect a
   const query = new URLSearchParams({
     utm_source: "google", utm_medium: "cpc", utm_campaign: "臺灣 冬季", utm_id: "winter-26",
     utm_term: "tea gifts", utm_content: "snowflake", gclid: "click-1", dclid: "click-2",
-    gbraid: "click-3", wbraid: "click-4", fbclid: "click-5", msclkid: "click-6", oppref: "openai-click",
+    gbraid: "click-3", wbraid: "click-4", fbclid: "click-5", msclkid: "click-6", ttclid: "tiktok-click", tt_campaignid: "campaign-23", oppref: "openai-click",
     cart: "private-cart", key: "private-key", token: "private-token", email: "private@example.test",
     redirect: "https://example.test/", next: "/account", market: "US",
   });
@@ -61,7 +61,7 @@ test("advertising attribution survives while cart, account, arbitrary redirect a
   assert.equal(destination.origin, "https://www.charmvilla.com.tw");
   assert.equal(destination.pathname, "/");
   assert.equal(destination.hash, "");
-  assert.deepEqual([...destination.searchParams.keys()], [...query.keys()].slice(0, 13));
+  assert.deepEqual([...destination.searchParams.keys()], [...query.keys()].slice(0, 15));
   for (const [key, value] of destination.searchParams) assert.equal(value, query.get(key));
 });
 

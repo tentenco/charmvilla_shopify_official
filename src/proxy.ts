@@ -11,7 +11,7 @@ import { NextResponse, type NextRequest } from "next/server";
 const REWRITTEN = "x-cv-locale-rewrite";
 const ATTRIBUTION_PARAMETERS = new Set([
   "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "utm_id",
-  "gclid", "dclid", "gbraid", "wbraid", "fbclid", "msclkid", "oppref",
+  "gclid", "dclid", "gbraid", "wbraid", "fbclid", "msclkid", "ttclid", "tt_campaignid", "oppref",
 ]);
 
 export function proxy(request: NextRequest) {

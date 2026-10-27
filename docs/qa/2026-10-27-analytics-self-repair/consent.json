@@ -1,0 +1,18 @@
+{
+  "before": {
+    "page_view": 1,
+    "view_item": 1
+  },
+  "denied": {
+    "disabled": true,
+    "gaCookies": false
+  },
+  "after": {
+    "page_view": 2,
+    "view_item": 2
+  },
+  "crossTab": {
+    "choice": "denied",
+    "disabled": true
+  }
+}

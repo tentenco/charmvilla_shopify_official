@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useT } from "@/i18n/LocaleProvider";
 import { localeHref } from "@/i18n/config";
-import { analyticsEnabled, consent, marketingConsent, setConsent, syncShopifyConsent, track, CONSENT_EVENT, SETTINGS_EVENT, type AnalyticsItem } from "@/lib/analytics/ga4";
+import { analyticsEnabled, consent, marketingConsent, setConsent, refreshAnalyticsConsent, syncShopifyConsent, track, CONSENT_KEY, MARKETING_CONSENT_KEY, CONSENT_EVENT, SETTINGS_EVENT, type AnalyticsItem } from "@/lib/analytics/ga4";
 import { chatgptEnabled } from "@/lib/analytics/chatgpt";
 
 export default function Analytics() {
@@ -17,8 +17,15 @@ export default function Analytics() {
       setShow(consent() === null || marketingConsent() === null); void syncShopifyConsent();
     });
     const open = () => setShow(true);
+    const storageChanged = (event: StorageEvent) => {
+      if (event.key === CONSENT_KEY || event.key === MARKETING_CONSENT_KEY || event.key === null) {
+        refreshAnalyticsConsent();
+        setShow(consent() === null || marketingConsent() === null);
+      }
+    };
     window.addEventListener(SETTINGS_EVENT, open);
-    return () => window.removeEventListener(SETTINGS_EVENT, open);
+    window.addEventListener("storage", storageChanged);
+    return () => { window.removeEventListener(SETTINGS_EVENT, open); window.removeEventListener("storage", storageChanged); };
   }, []);
   useEffect(() => {
     let pageSent = false; const seen = new Set<Element>(); const observed = new WeakSet<Element>();
@@ -34,7 +41,7 @@ export default function Analytics() {
     const observe = () => { document.querySelectorAll<HTMLElement>("[data-analytics-item]").forEach(el => { if (!observed.has(el)) { observed.add(el); observer.observe(el); } }); };
     observe();
     const mutations = new MutationObserver(observe); mutations.observe(document.body, { childList: true, subtree: true });
-    const changed = () => { page(); document.querySelectorAll<HTMLElement>("[data-analytics-item]").forEach(el => { observer.unobserve(el); observer.observe(el); }); };
+    const changed = () => { if (consent() !== "granted") { pageSent = false; seen.clear(); } page(); document.querySelectorAll<HTMLElement>("[data-analytics-item]").forEach(el => { observer.unobserve(el); observer.observe(el); }); };
     const click = (event: MouseEvent) => {
       const card = (event.target as Element).closest<HTMLElement>("[data-analytics-item]");
       if (card && (event.target as Element).closest("a")) { try { track("select_item", { item_list_id: pathname, item_list_name: pathname, items: [JSON.parse(card.dataset.analyticsItem!)] }); } catch { /* invalid card */ } }

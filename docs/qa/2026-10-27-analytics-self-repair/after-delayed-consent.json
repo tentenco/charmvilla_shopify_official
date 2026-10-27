@@ -1,0 +1,30 @@
+{
+  "width": 1741,
+  "height": 1215,
+  "config": [
+    {
+      "send_page_view": false,
+      "page_location": "http://127.0.0.1:3258/products/christmas-gift-box",
+      "page_referrer": "",
+      "ignore_referrer": false,
+      "campaign_source": "tiktok",
+      "campaign_medium": "paid_social",
+      "campaign_name": "self-audit",
+      "campaign_id": "self-audit-23",
+      "allow_google_signals": false,
+      "allow_ad_personalization_signals": false,
+      "debug_mode": true
+    }
+  ],
+  "requests": [
+    {
+      "en": null,
+      "cs": "tiktok",
+      "cm": "paid_social",
+      "cn": "self-audit",
+      "ci": "self-audit-23",
+      "dl": "http://127.0.0.1:3258/products/christmas-gift-box",
+      "_dbg": null
+    }
+  ]
+}

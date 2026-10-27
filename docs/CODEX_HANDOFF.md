@@ -1,5 +1,19 @@
 # CHARM VILLA 開發交接
 
+## 2026-10-27 分析追蹤自我修復（發布驗收接續本輪QA）
+
+- 使用者明確要求自我檢查與修復，並提供Aaron的TikTok匯出、要求按新證據回信。修復了先導航後同意的UTM遺失、SDK初次載入失敗不可重試、跨分頁撤回／同頁再同意的去重狀態與storage受阻的明確選擇；URL遮蔽checkout/account路徑token，GEO保留ttclid與實際廣告使用的tt_campaignid。沒有實作設計師bypass。
+- Node24 check與35相關測試通過；真實Google SDK已見活動欄位與204、暫時阻擋後恢復、同頁重同意與跨分頁撤回通過。英／中1440及390、鍵盤／reduced-motion驗證通過；Shopify獨立cart CRUD清空、checkout／account host驗證通過，未下單。詳[本輪QA](qa/2026-10-27-analytics-self-repair/README.md)。
+- Aaron附件已下載至私有/tmp，7CSV／120campaign-hour對帳相符；固定-5與紐約-4兩假設所有非零LPV都落GA查詢期間內，且早於新GEO規則部署。不可把完整歷史差異斷言為同意或機器人。實際TikTok in-app／placement／完整歷史WAF join仍缺。
+- 前兩封通知與報告已寄，不得重寄；本輪Aaron回信尚待正式修復驗收後寄同一thread。沿用先前go-live與本輪同一追蹤問題修復授權，僅發布確認修復；不改同意政策、GA filters、DNS、防火牆或廣告設定。正式部署／新回信結果以QA／PLAN最新狀態為準。
+
+## 2026-10-27 TikTok／GA4 診斷報告已寄
+
+- Aaron確認指標為Landing page views、Oct23–26、/collections/tea。GA4 Pacific快照55 sessions／35 active users，TikTok2 sessions、該landing8 sessions；明確同意前不載入GA。沒有原始TikTok export／帳戶時區／完整URL與歷史同意率，無法量化完整差異。
+- Cloudflare DNS only；Vercel一日以上／custom query受Plus限制，且最近一日system DDoS有denied/challenged，未與TikTok對上。Shopify6 sessions全為Headless checkout landing，非主站流量。GEO與Oct26 Pacific晚間重疊，不能用它解釋較早天數。
+- 兩頁英文PDF已寄Aaron，Gmail 1a17be4b849a7143／SENT與附件已讀回，未新增Cc；勿重寄。已向Aaron索取最後核對資料，未更動追蹤政策／防火牆／商店。詳[診斷QA](qa/2026-10-27-tiktok-ga4-diagnosis/README.md)。
+- 新需求為設計師在臺灣看美國站的最佳流程建議（VPN／套件／GEO bypass）；目前僅諮詢授權，尚未實作或發布新例外。現況src/proxy.ts無cookie／query bypass，正式Vercel alias hostname不套用GEO。當次PLAN保存建議與範圍。
+
 ## 2026-10-27 臺灣 GEO redirect 與 ChatGPT Pixel（已正式發布）
 
 - 使用者「go live」明確授權。應用提交 `d00b871` 已push至指定GitHub main；Vercel `dpl_HHRuxAKfu1bbrpwjH8PGkDfPEqrn` Production READY，來源SHA、www／apex aliases與既有project一致。後續僅補驗收文件，不更改應用程式。

@@ -1,0 +1,10 @@
+{
+  "requests": [
+    {
+      "event": "page_view",
+      "path": "http://127.0.0.1:3258/news",
+      "debug": "true",
+      "status": 204
+    }
+  ]
+}

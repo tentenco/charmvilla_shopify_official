@@ -1,0 +1,16 @@
+
+> charmvilla-gallery-site@0.1.0 shopify:verify
+> node scripts/shopify/verify.mjs
+
+{
+  "shop": "Charmvilla",
+  "products": 14,
+  "admin": "connected",
+  "cms": "pages and metaobject definitions readable",
+  "storefront": "connected",
+  "cart": "create/read/update/remove passed; test cart emptied",
+  "checkout": "correct HTTPS host",
+  "account": "Shopify hosted redirect verified",
+  "invalidCart": "400",
+  "noOrderPlaced": true
+}

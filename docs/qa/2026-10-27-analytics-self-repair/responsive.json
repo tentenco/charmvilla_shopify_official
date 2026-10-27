@@ -1,0 +1,30 @@
+{
+  "en": {
+    "width": 390,
+    "height": 844,
+    "overflow": false,
+    "buttons": [
+      "Essential only",
+      "Allow analytics",
+      "Allow analytics & ads"
+    ]
+  },
+  "zh": {
+    "width": 390,
+    "height": 844,
+    "overflow": false,
+    "gaScript": false,
+    "buttons": [
+      "僅必要功能",
+      "允許分析",
+      "允許分析與廣告"
+    ]
+  },
+  "desktop": {
+    "width": 1440,
+    "height": 900,
+    "overflow": false,
+    "reduced": true
+  },
+  "keyboard": "允許分析"
+}

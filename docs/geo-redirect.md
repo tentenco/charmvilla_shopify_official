@@ -16,7 +16,7 @@
 | 搜尋爬蟲 | 與同國別的一般訪客一致，沒有 User-Agent 特例 |
 | Shopify hosted checkout／account | 不在這個 Vercel 主機的範圍內 |
 
-只轉送 `utm_source`、`utm_medium`、`utm_campaign`、`utm_term`、`utm_content`、`utm_id`、`gclid`、`dclid`、`gbraid`、`wbraid`、`fbclid`、`msclkid`、`oppref`。不轉送其他查詢參數、hash、Cookie、購物車或登入狀態。
+只轉送 `utm_source`、`utm_medium`、`utm_campaign`、`utm_term`、`utm_content`、`utm_id`、`gclid`、`dclid`、`gbraid`、`wbraid`、`fbclid`、`msclkid`、`ttclid`、`tt_campaignid`、`oppref`。不轉送其他查詢參數、hash、Cookie、購物車或登入狀態。
 
 ## 為什麼放在 Vercel
 
@@ -51,3 +51,5 @@ Cloudflare 已登入後台的 apex 與 www 記錄均為 `DNS only`，CNAME 指�
 - [Cloudflare Single Redirects](https://developers.cloudflare.com/rules/url-forwarding/single-redirects/)
 - [Google：依地區提供不同內容的爬取限制](https://developers.google.com/search/docs/specialty/international/locale-adaptive-pages)
 - [Google：多地區網站與使用者切換](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites)
+
+2026-10-27追蹤自我修復另補TikTok ttclid與tt_campaignid，發布與驗證見[本輪QA](qa/2026-10-27-analytics-self-repair/README.md)。

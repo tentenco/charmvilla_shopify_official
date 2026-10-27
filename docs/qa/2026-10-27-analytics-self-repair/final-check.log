@@ -1,0 +1,186 @@
+
+> charmvilla-gallery-site@0.1.0 check
+> npm run lint && npm run typecheck && npm run build
+
+
+> charmvilla-gallery-site@0.1.0 lint
+> eslint
+
+
+/Users/ekc-m5max/Documents/Github/Codex-Local/10-14-charmvilla-shopify-official/docs/qa/2026-10-01-product-studio-gallery/reference.mjs
+  19:11  warning  'frame' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  22:11  warning  'pressed' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/ekc-m5max/Documents/Github/Codex-Local/10-14-charmvilla-shopify-official/scripts/tmp/sheet2.mjs
+  4:103  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/ekc-m5max/Documents/Github/Codex-Local/10-14-charmvilla-shopify-official/src/components/account/AccountClient.tsx
+  167:123  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/ekc-m5max/Documents/Github/Codex-Local/10-14-charmvilla-shopify-official/src/components/cart/CartDrawer.tsx
+  54:64  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/ekc-m5max/Documents/Github/Codex-Local/10-14-charmvilla-shopify-official/src/components/chrome/Header.tsx
+  132:11  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/ekc-m5max/Documents/Github/Codex-Local/10-14-charmvilla-shopify-official/src/components/engine/Preloader.tsx
+  78:9  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+✖ 7 problems (0 errors, 7 warnings)
+
+
+> charmvilla-gallery-site@0.1.0 typecheck
+> tsc --noEmit
+
+
+> charmvilla-gallery-site@0.1.0 build
+> next build
+
+▲ Next.js 16.3.8 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 14ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 553ms
+  Running TypeScript ...
+  Finished TypeScript in 781ms ...
+  Collecting page data using 17 workers ...
+  Generating static pages using 17 workers (0/81) ...
+  Generating static pages using 17 workers (20/81)
+  Generating static pages using 17 workers (40/81)
+  Generating static pages using 17 workers (60/81)
+✓ Generating static pages using 17 workers (81/81) in 240ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /_not-found
+├ ƒ /[lang]
+├ ƒ /[lang]/[...rest]
+├   /[lang]/about
+│ ├ ● /zh/about
+│ └ ● /en/about
+├   /[lang]/accessibility
+│ ├ ● /zh/accessibility
+│ └ ● /en/accessibility
+├   /[lang]/account
+│ ├ ● /zh/account
+│ └ ● /en/account
+├ ƒ /[lang]/account/activate/[[...token]]
+├ ƒ /[lang]/account/reset/[[...token]]
+├ ƒ /[lang]/collections/[category]
+├   /[lang]/faq
+│ ├ ● /zh/faq
+│ └ ● /en/faq
+├   /[lang]/news
+│ ├ ● /zh/news
+│ └ ● /en/news
+├   /[lang]/news/[slug]
+│ ├ ● /zh/news/la-popup-scholart-selection-2026
+│ └ ● /en/news/la-popup-scholart-selection-2026
+├   /[lang]/policy
+│ ├ ● /zh/policy
+│ └ ● /en/policy
+├   /[lang]/privacy
+│ ├ ● /zh/privacy
+│ └ ● /en/privacy
+├ ƒ /[lang]/products/[slug]
+├   /[lang]/prop65
+│ ├ ● /zh/prop65
+│ └ ● /en/prop65
+├   /[lang]/tasks
+│ ├ ● /zh/tasks
+│ └ ● /en/tasks
+├   /[lang]/terms
+│ ├ ● /zh/terms
+│ └ ● /en/terms
+├ ƒ /api/account/activate
+├ ƒ /api/account/addresses
+├ ƒ /api/account/login
+├ ƒ /api/account/logout
+├ ƒ /api/account/me
+├ ƒ /api/account/profile
+├ ƒ /api/account/recover
+├ ƒ /api/account/register
+├ ƒ /api/account/reset
+├ ƒ /api/cart
+├ ƒ /api/cart/analytics
+├ ƒ /api/newsletter
+├ ƒ /api/preorder
+├ ƒ /api/products
+├ ○ /apple-icon.png
+├ ○ /icon.png
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+(node:20545) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:20545) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ new visitors and existing analytics consent cannot silently enable advertising (26.540167ms)
+✔ explicit advertising consent loads one head script and initializes denied before sending the exact page event (2.717125ms)
+✔ client navigation sends one event per pathname visit without counting query changes or effect replays (1.963917ms)
+✔ revocation during script loading does not replay a previously allowed page event (2.05ms)
+✔ revocation stops future events and clears only pixel attribution cookies without removing shopping data (1.661584ms)
+✔ GPC and sensitive account or task pages prevent advertising measurement (8.520917ms)
+✔ previews are off by default and explicit debug enables only the test pixel mode (7.823084ms)
+✔ a blocked SDK can retry on a later visit without duplicating initialization or inventing events (1.445958ms)
+✔ withdrawal still works when storage becomes unavailable and no customer data or purchase is supplied (1.435208ms)
+(node:20551) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:20551) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+✔ a TikTok landing keeps its campaign when consent follows navigation, without pre-consent storage or requests (22.420208ms)
+✔ a later explicit campaign replaces the pending landing campaign as a whole (2.537792ms)
+✔ a failed Google script retries on the next tracked action with one initialization and the queued events intact (2.714833ms)
+✔ an explicit analytics choice works in memory when storage is unavailable and can still be withdrawn (1.673625ms)
+✔ a stored refusal never loads GA and discards the earlier campaign before a later fresh opt-in (1.596958ms)
+✔ withdrawal from another tab updates the loaded tag, blocks queued measurement and keeps shopping storage (1.918167ms)
+✔ pending campaign metadata expires after thirty minutes without writing browser storage (1.572958ms)
+✔ URL sanitization keeps campaign IDs but removes sensitive path tokens, queries and unsupported schemes (1.128458ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 93.572625
+✔ Purchase uses discounted merchandise value, separates shipping/tax, stable variant ID and no PII (1.237417ms)
+✔ Repeated purchase events and thank-you reloads are deduplicated (0.715958ms)
+✔ Checkout cannot report a purchase without a real Shopify order ID (0.248916ms)
+✔ Both explicit storefront consent and Shopify analytics permission are required (0.609584ms)
+✔ Shopify checkout stages map once to standard GA4 funnel events (0.555208ms)
+✔ URL sanitization removes checkout tokens and customer inputs (0.219209ms)
+✔ Product and cart analytics use the same Shopify variant ID (0.111833ms)
+✔ Checkout and payment returns do not replace acquisition referrals (0.041125ms)
+✔ Preorder analytics keeps the native checkout SKU, distinct plans and excludes zero-quantity lines (0.400541ms)
+(node:20560) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/ekc-m5max/Documents/Github/Codex-Local/10-14-charmvilla-shopify-official/src/lib/analytics/ga4.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/ekc-m5max/Documents/Github/Codex-Local/10-14-charmvilla-shopify-official/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Taiwan page visits redirect from both production hosts and all locale paths without caching (4.215042ms)
+✔ advertising attribution survives while cart, account, arbitrary redirect and fragment values stay on the US origin (0.515916ms)
+✔ non-Taiwan and unknown geography keep the US storefront regardless of language or Cloudflare headers (0.452708ms)
+✔ local development and previews cannot activate production geography redirects (0.22475ms)
+✔ other hosts and the Taiwan destination never enter the production redirect (0.19075ms)
+✔ unsafe HTTP methods are never redirected to another storefront (0.166125ms)
+✔ crawlers use the same geography policy and market cookies cannot bypass the requested hard redirect (0.167708ms)
+✔ the proxy matcher excludes APIs, framework internals, public assets, robots and sitemaps (1.2785ms)
+✔ existing English canonical redirects, Chinese routes and self-hosted rewrites remain intact (0.191958ms)
+(node:20561) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/ekc-m5max/Documents/Github/Codex-Local/10-14-charmvilla-shopify-official/src/proxy.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/ekc-m5max/Documents/Github/Codex-Local/10-14-charmvilla-shopify-official/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 178.280958

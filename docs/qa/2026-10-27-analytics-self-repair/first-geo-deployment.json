@@ -1,0 +1,11 @@
+{
+  "id": "dpl_HHRuxAKfu1bbrpwjH8PGkDfPEqrn",
+  "createdAt": 1793078305536,
+  "ready": 1793078349356,
+  "buildingAt": 1793078306905,
+  "readyState": "READY",
+  "target": "production",
+  "createdAt_UTC": "2026-10-27T05:18:25.536000+00:00",
+  "ready_UTC": "2026-10-27T05:19:09.356000+00:00",
+  "buildingAt_UTC": "2026-10-27T05:18:26.905000+00:00"
+}

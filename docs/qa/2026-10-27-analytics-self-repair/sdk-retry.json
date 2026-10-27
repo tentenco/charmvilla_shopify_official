@@ -1,0 +1,17 @@
+{
+  "failed": {
+    "sdkLoaded": false,
+    "scriptAttached": false,
+    "configCount": 1
+  },
+  "recovered": {
+    "sdkLoaded": true,
+    "configCount": 1,
+    "pageViews": 2,
+    "advertisingScript": false
+  },
+  "responseCodes": [
+    204
+  ],
+  "runtimeExceptions": 0
+}
