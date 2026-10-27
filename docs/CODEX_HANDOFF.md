@@ -1,5 +1,18 @@
 # CHARM VILLA 開發交接
 
+## 2026-10-27 ChatGPT Pixel 與待發布工作（本機完成）
+
+- PDF指定Pixel `JrvXcurpdqPxLqn524L1dE`與`page_viewed`已接入，獨立marketing同意、GPC、撤回與去重；只允許分析不會載入廣告SDK。現有Pixel的automatic advanced matching為true，雙語隱私政策已揭露雜湊比對，事件opt_out；不新增購買或修改廣告活動。[規格與驗證](analytics/chatgpt-pixel.md)。
+- 最終Node24 check通過（7既有warnings）、27項相關測試；Ego雙語1440／390／鍵盤／reduced-motion、4截圖通過；真實SDK及設定200、page_viewed endpoint202，撤回後無新事件。這不是正式站驗證，也不是Ads Event Stream讀回。
+- GEO與Pixel兩項均尚未commit／push／部署，待明確Vercel發布授權；之後才依使用者既有授權寄英文通知至指定To／Cc。Gmail既有OAuth已確認erik@tenten.co；不需重登入。
+- AdsManager現登入dev@tenten.co且僅Tenten帳號，無CHARM VILLA；不能查指定Pixel Event Stream或宣稱已連campaign。接續、queue與程序以[PLAN](agent/PLAN.md)為準。
+
+## 2026-10-27 臺灣 GEO redirect（本機完成，尚未發布）
+
+- 使用者要求臺灣 IP 的頁面瀏覽全部導向臺灣站。Cloudflare 已登入後台核對 apex／www 均 DNS only、直連 Vercel，沒有改 DNS。
+- `src/proxy.ts` 已加入 Production／正式主機／GET HEAD／TW 限定的 302 no-store，保留廣告歸因參數白名單；API／靜態資源與原雙語路由保持，詳[規格與驗證](geo-redirect.md)。Node24 check、9路由及10 HTTP案例通過，Ego合成TW轉址成功。
+- 尚未commit／push／部署，不能宣稱正式臺灣轉址已啟用。接續為PDF指定的ChatGPT廣告追蹤碼與兩項完成後的英文通知；以[PLAN](agent/PLAN.md)保留queue與發布狀態。其他工作樹不動。
+
 ## 2026-10-16 IG 三款攝影首稿（僅交付試稿）
 
 - 內建imagegen三次各一張；聖誕12入橘盒、聖誕心意禮三盒組、團圓香檳金。沿用官網淺暖灰底，加少量松枝／緞帶和冬日光影，無額外廣告文字。

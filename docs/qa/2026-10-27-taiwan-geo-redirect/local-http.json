@@ -1,0 +1,95 @@
+{
+  "environment": "Local Node 24 custom Next server; production flags and synthetic Vercel country header; hostname www.charmvilla.com; bound to loopback only",
+  "cases": [
+    {
+      "path": "/",
+      "country": "TW",
+      "method": "GET",
+      "status": 302,
+      "location": "https://www.charmvilla.com.tw/",
+      "cacheControl": "private, no-store, max-age=0",
+      "type": null
+    },
+    {
+      "path": "/zh/products/kyoto-gift-box?utm_source=google&gclid=sample-click&token=must-not-transfer",
+      "country": "TW",
+      "method": "GET",
+      "status": 302,
+      "location": "https://www.charmvilla.com.tw/?utm_source=google&gclid=sample-click",
+      "cacheControl": "private, no-store, max-age=0",
+      "type": null
+    },
+    {
+      "path": "/en/collections/tea",
+      "country": "TW",
+      "method": "HEAD",
+      "status": 302,
+      "location": "https://www.charmvilla.com.tw/",
+      "cacheControl": "private, no-store, max-age=0",
+      "type": null
+    },
+    {
+      "path": "/zh/about",
+      "country": "US",
+      "method": "GET",
+      "status": 200,
+      "location": null,
+      "cacheControl": "s-maxage=31536000",
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/zh/about",
+      "country": null,
+      "method": "GET",
+      "status": 200,
+      "location": null,
+      "cacheControl": "s-maxage=31536000",
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/robots.txt",
+      "country": "TW",
+      "method": "GET",
+      "status": 200,
+      "location": null,
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "type": "text/plain"
+    },
+    {
+      "path": "/sitemap.xml",
+      "country": "TW",
+      "method": "GET",
+      "status": 200,
+      "location": null,
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "type": "application/xml"
+    },
+    {
+      "path": "/api/cart",
+      "country": "TW",
+      "method": "GET",
+      "status": 200,
+      "location": null,
+      "cacheControl": null,
+      "type": "application/json"
+    },
+    {
+      "path": "/brand/charmvilla-logo.png",
+      "country": "TW",
+      "method": "GET",
+      "status": 200,
+      "location": null,
+      "cacheControl": "public, max-age=0",
+      "type": "image/png"
+    },
+    {
+      "path": "/zh/about",
+      "country": "TW",
+      "method": "POST",
+      "status": 200,
+      "location": null,
+      "cacheControl": "s-maxage=31536000",
+      "type": "text/html; charset=utf-8"
+    }
+  ]
+}

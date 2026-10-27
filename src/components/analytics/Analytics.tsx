@@ -4,16 +4,17 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useT } from "@/i18n/LocaleProvider";
 import { localeHref } from "@/i18n/config";
-import { analyticsEnabled, consent, setConsent, syncShopifyConsent, track, CONSENT_EVENT, SETTINGS_EVENT, type AnalyticsItem } from "@/lib/analytics/ga4";
+import { analyticsEnabled, consent, marketingConsent, setConsent, syncShopifyConsent, track, CONSENT_EVENT, SETTINGS_EVENT, type AnalyticsItem } from "@/lib/analytics/ga4";
+import { chatgptEnabled } from "@/lib/analytics/chatgpt";
 
 export default function Analytics() {
   const pathname = usePathname(); const { lang, t } = useT();
   const [show, setShow] = useState(false);
   useEffect(() => {
     queueMicrotask(() => {
-      if (!analyticsEnabled()) return;
+      if (!analyticsEnabled() && !chatgptEnabled()) return;
       try { if (new URLSearchParams(location.search).get("analytics_debug") === "1") sessionStorage.setItem("cv-analytics-debug", "1"); } catch { /* private mode */ }
-      setShow(consent() === null); void syncShopifyConsent();
+      setShow(consent() === null || marketingConsent() === null); void syncShopifyConsent();
     });
     const open = () => setShow(true);
     window.addEventListener(SETTINGS_EVENT, open);
@@ -43,8 +44,8 @@ export default function Analytics() {
   }, [pathname]);
   if (!show) return null;
   return <section className="cookie-banner tc" role="region" aria-label={t("Cookie 偏好設定", "Cookie preferences")}>
-    <p>{t("我們使用必要的儲存功能提供購物服務。經你同意後，會使用 Google Analytics 分析瀏覽與購買流程。", "We use essential storage to provide shopping services. With your permission, Google Analytics helps us understand browsing and purchases.")} <Link href={localeHref(lang, "/privacy#cookies")}>{t("隱私權政策", "Privacy policy")}</Link></p>
-    <div><button type="button" onClick={() => { setConsent("denied"); setShow(false); }}>{t("僅必要功能", "Essential only")}</button><button type="button" onClick={() => { setConsent("granted"); setShow(false); }}>{t("允許分析", "Allow analytics")}</button></div>
+    <p>{t("我們使用必要的儲存功能提供購物服務。你可以另外允許 Google Analytics 分析瀏覽與購買流程，以及 OpenAI 衡量 ChatGPT 廣告帶來的網頁瀏覽。", "We use essential storage for shopping. You can also allow Google Analytics to measure browsing and purchases, and OpenAI to measure page views from ChatGPT ads.")} <Link href={localeHref(lang, "/privacy#cookies")}>{t("隱私權政策", "Privacy policy")}</Link></p>
+    <div><button type="button" onClick={() => { setConsent("denied"); setShow(false); }}>{t("僅必要功能", "Essential only")}</button><button type="button" onClick={() => { setConsent("granted"); setShow(false); }}>{t("允許分析", "Allow analytics")}</button>{!navigator.globalPrivacyControl && <button type="button" onClick={() => { setConsent("granted", "granted"); setShow(false); }}>{t("允許分析與廣告", "Allow analytics & ads")}</button>}</div>
   </section>;
 }
 

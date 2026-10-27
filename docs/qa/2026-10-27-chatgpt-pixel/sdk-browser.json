@@ -1,0 +1,27 @@
+{
+  "testTime": "2026-10-27T02:57:40.218Z",
+  "environment": "Local production build with explicit chatgpt_pixel_debug=1; real SDK",
+  "checks": {
+    "essentialOnlyDoesNotLoad": true,
+    "analyticsOnlyDoesNotLoad": true,
+    "explicitAdvertisingLoadsOneScript": true,
+    "spaNavigationSendsOnePageView": true
+  },
+  "withdrawal": {
+    "measuredEvents": 1,
+    "attributionCookies": [],
+    "consentPreferenceStored": true,
+    "marketing": "denied"
+  },
+  "transport": {
+    "sdkStatus": 200,
+    "configurationStatus": 200,
+    "eventStatus": 202,
+    "eventName": "page_viewed",
+    "type": "contents",
+    "optOut": true
+  },
+  "automaticAdvancedMatchingEnabled": true,
+  "eventStreamVerified": false,
+  "reason": "Current Ads Manager session only exposes the Tenten account"
+}

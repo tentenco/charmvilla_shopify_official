@@ -1,0 +1,126 @@
+[
+  {
+    "lang": "en",
+    "width": 1440,
+    "height": 900,
+    "overflow": false,
+    "banner": {
+      "x": 18,
+      "y": 688.53125,
+      "width": 520,
+      "height": 193.46875
+    },
+    "buttons": [
+      {
+        "text": "Essential only",
+        "width": 152.65625,
+        "height": 66.1875
+      },
+      {
+        "text": "Allow analytics",
+        "width": 152.671875,
+        "height": 66.1875
+      },
+      {
+        "text": "Allow analytics & ads",
+        "width": 152.671875,
+        "height": 66.1875
+      }
+    ],
+    "errors": [],
+    "keyboardFocus": "Allow analytics"
+  },
+  {
+    "lang": "en",
+    "width": 390,
+    "height": 844,
+    "overflow": false,
+    "banner": {
+      "x": 18,
+      "y": 577.625,
+      "width": 354,
+      "height": 248.375
+    },
+    "buttons": [
+      {
+        "text": "Essential only",
+        "width": 151,
+        "height": 44
+      },
+      {
+        "text": "Allow analytics",
+        "width": 151,
+        "height": 44
+      },
+      {
+        "text": "Allow analytics & ads",
+        "width": 312,
+        "height": 44
+      }
+    ],
+    "errors": [],
+    "keyboardFocus": "Allow analytics"
+  },
+  {
+    "lang": "zh",
+    "width": 1440,
+    "height": 900,
+    "overflow": false,
+    "banner": {
+      "x": 18,
+      "y": 710.71875,
+      "width": 520,
+      "height": 171.28125
+    },
+    "buttons": [
+      {
+        "text": "僅必要功能",
+        "width": 152.65625,
+        "height": 44
+      },
+      {
+        "text": "允許分析",
+        "width": 152.671875,
+        "height": 44
+      },
+      {
+        "text": "允許分析與廣告",
+        "width": 152.671875,
+        "height": 44
+      }
+    ],
+    "errors": [],
+    "keyboardFocus": "允許分析"
+  },
+  {
+    "lang": "zh",
+    "width": 390,
+    "height": 844,
+    "overflow": false,
+    "banner": {
+      "x": 18,
+      "y": 577.625,
+      "width": 354,
+      "height": 248.375
+    },
+    "buttons": [
+      {
+        "text": "僅必要功能",
+        "width": 151,
+        "height": 44
+      },
+      {
+        "text": "允許分析",
+        "width": 151,
+        "height": 44
+      },
+      {
+        "text": "允許分析與廣告",
+        "width": 312,
+        "height": 44
+      }
+    ],
+    "errors": [],
+    "keyboardFocus": "允許分析"
+  }
+]

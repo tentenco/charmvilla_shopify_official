@@ -3,6 +3,7 @@ import { Outfit, Noto_Sans_TC } from "next/font/google";
 import "../globals.css";
 import { CartProvider } from "@/components/cart/CartProvider";
 import Analytics from "@/components/analytics/Analytics";
+import ChatgptPixel from "@/components/analytics/ChatgptPixel";
 import CartDrawer from "@/components/cart/CartDrawer";
 import NewsletterPopup from "@/components/chrome/NewsletterPopup";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
@@ -39,7 +40,7 @@ export default async function RootLayout({ children, params }: Props & { childre
   const lang = isLocale(raw) ? raw : defaultLocale;
   return (
     <html lang={htmlLang[lang]} className={`${outfit.variable} ${notoTC.variable}`} suppressHydrationWarning>
-      <body className="bg-page text-ink"><script dangerouslySetInnerHTML={{ __html: introSeenScript }} /><JsonLd nodes={siteEntities(lang, social.map(link => link.href))} /><LocaleProvider lang={lang}><CartProvider>{children}<CartDrawer /><NewsletterPopup /><Analytics /></CartProvider></LocaleProvider></body>
+      <body className="bg-page text-ink"><script dangerouslySetInnerHTML={{ __html: introSeenScript }} /><JsonLd nodes={siteEntities(lang, social.map(link => link.href))} /><LocaleProvider lang={lang}><CartProvider>{children}<CartDrawer /><NewsletterPopup /><Analytics /><ChatgptPixel /></CartProvider></LocaleProvider></body>
     </html>
   );
 }

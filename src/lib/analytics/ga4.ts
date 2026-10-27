@@ -7,18 +7,27 @@ export type Consent = "granted" | "denied";
 type Gtag = (...args: unknown[]) => void;
 declare global {
   interface Window { dataLayer?: unknown[]; gtag?: Gtag; Shopify?: { customerPrivacy?: { setTrackingConsent: (settings: Record<string, unknown>, callback: (result?: { error?: string }) => void) => void } }; }
+  interface Navigator { readonly globalPrivacyControl?: boolean; }
 }
 export const GA_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID ?? "";
 export const CONSENT_KEY = "cv-analytics-consent-v1";
+export const MARKETING_CONSENT_KEY = "cv-marketing-consent-v1";
 export const CONSENT_EVENT = "cv-analytics-consent";
 export const SETTINGS_EVENT = "cv-cookie-settings";
 const shortId = (id: string) => id.split("/").pop()!;
 let initialized = false;
 let privacyReady: Promise<void> | undefined;
+let marketingChoice: Consent | undefined;
 
 export function consent(): Consent | null {
   if (typeof window === "undefined") return null;
   try { const v = localStorage.getItem(CONSENT_KEY); return v === "granted" || v === "denied" ? v : null; } catch { return null; }
+}
+export function marketingConsent(): Consent | null {
+  if (typeof window === "undefined") return null;
+  if (navigator.globalPrivacyControl) return "denied";
+  if (marketingChoice !== undefined) return marketingChoice;
+  try { const value = localStorage.getItem(MARKETING_CONSENT_KEY); return value === "granted" || value === "denied" ? value : null; } catch { return null; }
 }
 export function debugMode() {
   try { return new URLSearchParams(location.search).get("analytics_debug") === "1" || sessionStorage.getItem("cv-analytics-debug") === "1"; } catch { return false; }
@@ -57,7 +66,9 @@ export function track(name: string, params: Record<string, unknown> = {}) {
   window.gtag?.("event", name, { ...params, send_to: GA_ID, page_location: cleanUrl(location.href, true), page_referrer: cleanUrl(document.referrer), ...(debugMode() ? { debug_mode: true } : {}) });
   return true;
 }
-export function setConsent(value: Consent) {
+export function setConsent(value: Consent, marketing: Consent = "denied") {
+  const advertising = value === "granted" && !navigator.globalPrivacyControl ? marketing : "denied";
+  try { localStorage.setItem(MARKETING_CONSENT_KEY, advertising); marketingChoice = undefined; } catch { marketingChoice = advertising; }
   try { localStorage.setItem(CONSENT_KEY, value); } catch { /* storage blocked: no analytics */ }
   if (value === "granted") bootstrap();
   else {

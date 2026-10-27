@@ -182,7 +182,7 @@ const build = (lang: Locale) => {
   const privacy: PolicyDoc = {
     title: t("隱私權政策", "Privacy Policy"),
     // D5 (client 2026-10-12): the date the final policies are actually published on the site. Change it to the launch date at launch.
-    updated: t("最後更新：2026 年 10 月 15 日", "Last Updated: October 15, 2026"),
+    updated: t("最後更新：2026 年 10 月 27 日", "Last Updated: October 27, 2026"),
     intro: t("本隱私權政策說明 Charm Villa 在您造訪本網站或於本站購物時，如何蒐集、使用與揭露您的個人資料。", "This Privacy Policy describes how Charm Villa (\"we\", \"us\", or \"our\") collects, uses, and discloses your Personal Information when you visit or make a purchase from our website (the \"Site\")."),
     sections: [
       { id: "platform", heading: t("1. 資料的蒐集與儲存（我們的平台）", "1. How We Collect and Store Data (Our Platform)"), blocks: [
@@ -212,13 +212,15 @@ const build = (lang: Locale) => {
         ] },
       ] },
       { id: "cookies", heading: t("5. Cookie", "5. Cookies"), blocks: [
-        t("Cookie 是您造訪本站時儲存在裝置上的少量資訊。我們使用必要的 Cookie 與本機儲存功能提供購物服務，並在您允許後使用分析 Cookie。必要功能包括：", "Cookies are small pieces of information stored on your device. We use essential cookies and local storage to provide shopping services, and analytics cookies when you allow them. Essential functions include:"),
+        t("Cookie 是您造訪本站時儲存在裝置上的少量資訊。我們使用必要的 Cookie 與本機儲存功能提供購物服務，並依您的選擇使用分析或廣告量測 Cookie。必要功能包括：", "Cookies are small pieces of information stored on your device. We use essential cookies and local storage for shopping, and analytics or advertising measurement cookies according to your choices. Essential functions include:"),
         { list: [
           t("維持您的購物車工作階段。", "Maintain your active shopping cart session."),
           t("在登入時驗證您的身分並保護您的帳號。", "Authenticate your identity and secure your user account during login."),
           t("防止跨站請求偽造（CSRF）攻擊，確保您的資料安全。", "Prevent cross-site request forgery (CSRF) attacks to keep your data safe."),
         ] },
         t("您可選擇「允許分析」或「僅必要功能」，並隨時透過頁尾的「Cookie 設定」變更選擇。經您同意後，Google Analytics 4 會記錄網頁與商品瀏覽、購物車操作、結帳及完成購買事件，包含商品、金額、幣別、訂單編號與匿名瀏覽器識別資訊，用於分析購買流程與轉換率。我們不會將您的姓名、電子郵件、電話、地址或付款資料傳送至 Google Analytics，也未啟用廣告個人化。", "You can choose Allow analytics or Essential only, and change your choice at any time through Cookie settings in the footer. With your permission, Google Analytics 4 records page and product views, cart actions, checkout and completed purchases, including products, amounts, currency, order IDs and pseudonymous browser identifiers, to measure shopping journeys and conversion rates. We do not send names, email addresses, phone numbers, addresses or payment details to Google Analytics, and advertising personalization is disabled."),
+        t("若您另外選擇「允許分析與廣告」，我們會使用 OpenAI 的 ChatGPT 廣告量測 Pixel 記錄網頁瀏覽事件，並使用廣告點擊參考值及瀏覽器識別 Cookie 衡量廣告成效。只允許分析不會載入這個 Pixel。您可以隨時撤回廣告量測同意；撤回後停止傳送後續事件，並刪除 Pixel 的歸因與瀏覽器識別 Cookie。這項量測目前不包含購買事件，且事件不供個人化廣告使用。", "If you choose Allow analytics & ads, we use OpenAI's ChatGPT Ads Measurement Pixel to record page views and measure ad performance using ad click references and browser identifier cookies. Allow analytics alone does not load this pixel. You can withdraw advertising measurement consent at any time. We then stop sending new events and delete the pixel's attribution and browser identifier cookies. This measurement does not currently include purchases, and events opt out of personalization."),
+        t("依 Pixel 設定，OpenAI 也可能在您允許廣告量測後，辨識網站上的電子郵件、電話等支援的顧客識別資訊，在您的瀏覽器內以 SHA-256 雜湊後用於廣告轉換比對，不傳送這些識別欄位的原始內容。", "Depending on the pixel settings, OpenAI may also detect supported customer details on the site, such as email addresses and phone numbers, after you allow advertising measurement. It hashes those details in your browser using SHA-256 to match ad conversions, without sending those fields in plain text."),
         // D7 (client 2026-10-12, checked against the code): local mode keeps the bag in localStorage; with Shopify on, the bag is a Shopify
         // cart and the browser keeps only its id (CartProvider.tsx). Neither is a cookie or used for tracking (cart audit 2026-10-14).
         process.env.NEXT_PUBLIC_COMMERCE_MODE === "shopify"

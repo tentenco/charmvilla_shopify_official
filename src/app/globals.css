@@ -1823,7 +1823,7 @@ main:has(> .tasks-page), .catalog-shell:has(> main > .tasks-page), .catalog-shel
 .cookie-banner { position: fixed; z-index: 10000; bottom: 18px; left: 18px; width: min(520px, calc(100vw - 36px)); padding: 20px; background: #f4f2e9; color: #292723; box-shadow: 0 2px 24px #0002; border: 1px solid #b4ad9f; font-size: 14px; line-height: 1.65; }
 .cookie-banner p { margin: 0 0 16px; }
 .cookie-banner a { text-decoration: underline; text-underline-offset: 3px; }
-.cookie-banner > div { display: flex; gap: 10px; }
-.cookie-banner button { flex: 1; min-height: 44px; padding: 9px 12px; border: 1px solid currentColor; cursor: pointer; }
+.cookie-banner > div { display: flex; flex-wrap: wrap; gap: 10px; }
+.cookie-banner button { flex: 1 1 140px; min-height: 44px; padding: 9px 12px; border: 1px solid currentColor; cursor: pointer; }
 .cookie-banner button:last-child { background: #292723; color: #f4f2e9; }
 .cookie-banner button:focus-visible { outline: 2px solid #927545; outline-offset: 3px; }

@@ -9,8 +9,26 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 const REWRITTEN = "x-cv-locale-rewrite";
+const ATTRIBUTION_PARAMETERS = new Set([
+  "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "utm_id",
+  "gclid", "dclid", "gbraid", "wbraid", "fbclid", "msclkid", "oppref",
+]);
 
 export function proxy(request: NextRequest) {
+  const isTaiwanPageVisit = process.env.VERCEL === "1"
+    && process.env.VERCEL_ENV === "production"
+    && ["charmvilla.com", "www.charmvilla.com"].includes(request.nextUrl.hostname)
+    && ["GET", "HEAD"].includes(request.method)
+    && request.headers.get("x-vercel-ip-country") === "TW";
+  if (isTaiwanPageVisit) {
+    const destination = new URL("https://www.charmvilla.com.tw/");
+    for (const [key, value] of request.nextUrl.searchParams) {
+      if (ATTRIBUTION_PARAMETERS.has(key)) destination.searchParams.append(key, value);
+    }
+    const response = NextResponse.redirect(destination, 302);
+    response.headers.set("Cache-Control", "private, no-store, max-age=0");
+    return response;
+  }
   const { pathname } = request.nextUrl;
   if (pathname === "/zh" || pathname.startsWith("/zh/")) return NextResponse.next();
   const url = request.nextUrl.clone();
