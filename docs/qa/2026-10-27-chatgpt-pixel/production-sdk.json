@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-10-27T05:23:13.644Z",
+  "deploymentId": "dpl_HHRuxAKfu1bbrpwjH8PGkDfPEqrn",
+  "productionArtifact": true,
+  "officialHostnameBrowserTest": false,
+  "reason": "Taiwan egress redirects official-host page visits; this browser test uses the identical production deployment URL with explicit debug",
+  "initialNoSdk": true,
+  "analyticsOnlyNoSdk": true,
+  "state": {
+    "url": "https://charmvilla-demo2-6lfqfti5v-tentenco.vercel.app/about?chatgpt_pixel_debug=1",
+    "scriptCount": 1,
+    "marketing": "granted",
+    "requests": [
+      {
+        "url": "https://bzr.openai.com/v1/sdk/events",
+        "method": "POST",
+        "pageView": false,
+        "status": 0
+      },
+      {
+        "url": "https://bzrcdn.openai.com/pixel-config/v1/JrvXcurpdqPxLqn524L1dE.json",
+        "method": "GET",
+        "pageView": false,
+        "status": 200
+      },
+      {
+        "url": "https://bzr.openai.com/v1/sdk/events",
+        "method": "POST",
+        "pageView": true,
+        "status": 0
+      }
+    ]
+  },
+  "responses": [
+    {
+      "url": "https://bzrcdn.openai.com/sdk/oaiq.min.js",
+      "status": 200
+    },
+    {
+      "url": "https://bzrcdn.openai.com/pixel-config/v1/JrvXcurpdqPxLqn524L1dE.json",
+      "status": 200
+    },
+    {
+      "url": "https://bzr.openai.com/v1/sdk/events",
+      "status": 202
+    },
+    {
+      "url": "https://bzr.openai.com/v1/sdk/events",
+      "status": 202
+    }
+  ],
+  "eventStreamVerified": false
+}

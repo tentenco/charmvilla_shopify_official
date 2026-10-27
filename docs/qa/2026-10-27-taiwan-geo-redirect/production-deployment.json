@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-27T05:21:53.067089+00:00",
+  "id": "dpl_HHRuxAKfu1bbrpwjH8PGkDfPEqrn",
+  "projectId": "prj_QWvvqmrK6UCFkDhY9DyPAQe2Cx23",
+  "target": "production",
+  "readyState": "READY",
+  "url": "charmvilla-demo2-6lfqfti5v-tentenco.vercel.app",
+  "aliases": [
+    "www.charmvilla.com",
+    "charmvilla-demo2.vercel.app",
+    "charmvilla.com",
+    "charmvilla-demo2-tentenco.vercel.app",
+    "charmvilla-demo2-git-main-tentenco.vercel.app"
+  ],
+  "gitSha": "d00b871cc48c89c977369d50edaf07407a893fb7"
+}

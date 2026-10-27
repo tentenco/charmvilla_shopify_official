@@ -1,6 +1,6 @@
 # ChatGPT 廣告頁面量測
 
-更新：2026-10-27。本機實作與驗證完成，尚未提交、推送或部署。
+更新：2026-10-27。已隨 d00b871 推送並正式發布；Production READY。已部署 artifact 的實際 SDK／設定 HTTP 200、事件 HTTP 202；Event Stream 後台仍待 CHARM VILLA 權限核對。
 
 ## 量測範圍
 
@@ -41,10 +41,10 @@ node --test scripts/routing/proxy.test.mjs
 npm run check
 ```
 
-## 正式套用後仍需核對
+## 正式發布與剩餘核對
 
 本輪瀏覽器登入為 `dev@tenten.co`，Ads Manager 帳號選單只顯示 Tenten，沒有 CHARM VILLA，無法讀取指定 Pixel 的 Event Stream 或確認 campaign 事件連結。HTTP 202 代表量測請求已接受，不等於已在 Event Stream 讀回；兩者須分開回報。需要有權限的 CHARM VILLA 廣告帳號確認，不能另建 Pixel 或改 campaign 目標來完成驗收。
 
-上線後以美國官網、非臺灣出口檢查頁面量測；臺灣訪客會先經 GEO redirect 前往另一個網站，本輪未安裝臺灣站的 Pixel。購買歸因與真實訂單仍不在本次頁面量測範圍。
+正式部署的來源為 d00b871。因真實臺灣出口會先從正式主機轉往臺灣站，瀏覽器 SDK 驗證使用相同 Production 部署的唯一 URL 及明確 debug；不是以臺灣出口繞過正式主機的規則。確認未選／僅分析不載入，允許廣告後 SDK 與設定 200、事件 202，見[正式 SDK 證據](../qa/2026-10-27-chatgpt-pixel/production-sdk.json)。另以真實美國節點確認正式主機維持 200。本輪未安裝臺灣站 Pixel；購買歸因與真實訂單仍不在此頁面量測範圍。
 
 官方參考：[OpenAI Measurement Pixel](https://developers.openai.com/ads/measurement-pixel)。

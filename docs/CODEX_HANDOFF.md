@@ -1,17 +1,13 @@
 # CHARM VILLA 開發交接
 
-## 2026-10-27 ChatGPT Pixel 與待發布工作（本機完成）
+## 2026-10-27 臺灣 GEO redirect 與 ChatGPT Pixel（已正式發布）
 
-- PDF指定Pixel `JrvXcurpdqPxLqn524L1dE`與`page_viewed`已接入，獨立marketing同意、GPC、撤回與去重；只允許分析不會載入廣告SDK。現有Pixel的automatic advanced matching為true，雙語隱私政策已揭露雜湊比對，事件opt_out；不新增購買或修改廣告活動。[規格與驗證](analytics/chatgpt-pixel.md)。
-- 最終Node24 check通過（7既有warnings）、27項相關測試；Ego雙語1440／390／鍵盤／reduced-motion、4截圖通過；真實SDK及設定200、page_viewed endpoint202，撤回後無新事件。這不是正式站驗證，也不是Ads Event Stream讀回。
-- GEO與Pixel兩項均尚未commit／push／部署，待明確Vercel發布授權；之後才依使用者既有授權寄英文通知至指定To／Cc。Gmail既有OAuth已確認erik@tenten.co；不需重登入。
-- AdsManager現登入dev@tenten.co且僅Tenten帳號，無CHARM VILLA；不能查指定Pixel Event Stream或宣稱已連campaign。接續、queue與程序以[PLAN](agent/PLAN.md)為準。
-
-## 2026-10-27 臺灣 GEO redirect（本機完成，尚未發布）
-
-- 使用者要求臺灣 IP 的頁面瀏覽全部導向臺灣站。Cloudflare 已登入後台核對 apex／www 均 DNS only、直連 Vercel，沒有改 DNS。
-- `src/proxy.ts` 已加入 Production／正式主機／GET HEAD／TW 限定的 302 no-store，保留廣告歸因參數白名單；API／靜態資源與原雙語路由保持，詳[規格與驗證](geo-redirect.md)。Node24 check、9路由及10 HTTP案例通過，Ego合成TW轉址成功。
-- 尚未commit／push／部署，不能宣稱正式臺灣轉址已啟用。接續為PDF指定的ChatGPT廣告追蹤碼與兩項完成後的英文通知；以[PLAN](agent/PLAN.md)保留queue與發布狀態。其他工作樹不動。
+- 使用者「go live」明確授權。應用提交 `d00b871` 已push至指定GitHub main；Vercel `dpl_HHRuxAKfu1bbrpwjH8PGkDfPEqrn` Production READY，來源SHA、www／apex aliases與既有project一致。後續僅補驗收文件，不更改應用程式。
+- Cloudflare apex／www為DNS only、直連Vercel；未改DNS。臺灣實際出口的首頁／商品等六頁302 no-store至臺灣站、四項API／靜態／robots／sitemap排除200；Ego商品頁實際到臺灣站。US Buffalo正式/privacy200且沒有Location。[GEO規格與證據](geo-redirect.md)。
+- 指定Pixel `JrvXcurpdqPxLqn524L1dE`／page_viewed已部署，獨立marketing同意、GPC、撤回、去重及雙語隱私說明；GEO保留oppref。Pixel既有automatic advanced matching為true，未更動後台；程式事件opt_out，不新增購買或修改campaign。[Pixel規格與證據](analytics/chatgpt-pixel.md)。
+- Node24 check（7既有warnings）、27項測試、本機雙語1440／390／鍵盤／reduced-motion已通過。因臺灣出口會從正式主機轉走，部署後SDK瀏覽器驗證使用相同Production的唯一URL與明確debug：未選／僅分析不載入，SDK／設定200、event202；不是已登入CHARM VILLA Ads Event Stream的證據。
+- 既有AdsManager session只有dev@tenten.co／Tenten，無CHARM VILLA權限，Event Stream及campaign連結未確認。未冒稱已收到後台事件。
+- 上線英文通知已由erik@tenten.co寄給Aaron並Cc Kuan，Gmail讀回SENT；不要因接手重寄。使用者另要求診斷前兩天TikTok約1000點擊、GA2位的差異及report email，已依FIFO成為目前任務，見[PLAN](agent/PLAN.md)。新GEO的上線時間不得拿來解釋歷史差異。
 
 ## 2026-10-16 IG 三款攝影首稿（僅交付試稿）
 

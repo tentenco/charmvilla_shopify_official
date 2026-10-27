@@ -1,0 +1,19 @@
+{
+  "measurementId": "2jMmBTkZB0BQvyvXy00021OMJ",
+  "checkedAt": "2026-10-27T05:19:44.833Z",
+  "target": "https://www.charmvilla.com/privacy",
+  "probe": {
+    "country": "US",
+    "state": "NY",
+    "city": "Buffalo",
+    "network": "HostPapa"
+  },
+  "status": 200,
+  "headers": {
+    "server": "Vercel",
+    "location": null,
+    "x-matched-path": "/en/privacy",
+    "x-vercel-cache": "PRERENDER"
+  },
+  "rawBodySaved": false
+}

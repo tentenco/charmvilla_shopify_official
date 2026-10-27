@@ -1,6 +1,6 @@
 # CHARM VILLA GA4 電商追蹤
 
-## 2026-10-27 ChatGPT 廣告量測（本機完成，未發布）
+## 2026-10-27 ChatGPT 廣告量測（已隨 d00b871 正式發布）
 
 GA4 與 ChatGPT Pixel 使用分開同意，原有分析同意不視為廣告同意。Cookie banner 新增「允許分析與廣告」，GA4 廣告同意與 Shopify marketing 仍維持 denied／false。ChatGPT 只新增同意後的 `page_viewed`，不修改既有 GA4 checkout pixel 或購買事件；[實作、同意與驗證](chatgpt-pixel.md)。以下 10 月 15 日內容保留作既有 GA4 契約。
 

@@ -1,0 +1,77 @@
+{
+  "checkedAt": "2026-10-27T05:20:22.659195+00:00",
+  "egressCountry": "TW",
+  "syntheticGeoHeaders": false,
+  "cases": [
+    {
+      "path": "/",
+      "status": 302,
+      "location": "https://www.charmvilla.com.tw/",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentType": "text/plain"
+    },
+    {
+      "path": "/zh",
+      "status": 302,
+      "location": "https://www.charmvilla.com.tw/",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentType": "text/plain"
+    },
+    {
+      "path": "/products/kyoto-gift-box",
+      "status": 302,
+      "location": "https://www.charmvilla.com.tw/",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentType": "text/plain"
+    },
+    {
+      "path": "/zh/products/kyoto-gift-box",
+      "status": 302,
+      "location": "https://www.charmvilla.com.tw/",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentType": "text/plain"
+    },
+    {
+      "path": "/en/collections/tea",
+      "status": 302,
+      "location": "https://www.charmvilla.com.tw/",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentType": "text/plain"
+    },
+    {
+      "path": "/zh/about?utm_source=deployment-check&oppref=verification-reference&token=must-not-transfer",
+      "status": 302,
+      "location": "https://www.charmvilla.com.tw/?utm_source=deployment-check&oppref=verification-reference",
+      "cacheControl": "private, no-store, max-age=0",
+      "contentType": "text/plain"
+    },
+    {
+      "path": "/api/cart",
+      "status": 200,
+      "location": null,
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "contentType": "application/json"
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "location": null,
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "contentType": "text/plain; charset=utf-8"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "location": null,
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "contentType": "application/xml"
+    },
+    {
+      "path": "/brand/charmvilla-logo.png",
+      "status": 200,
+      "location": null,
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "contentType": "image/png"
+    }
+  ]
+}

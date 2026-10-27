@@ -1,6 +1,6 @@
 # 臺灣流量導向臺灣站
 
-更新：2026-10-27。本機實作及驗證完成，尚未提交、推送或部署。
+更新：2026-10-27。已依使用者「go live」授權，隨 d00b871 推送並正式發布；Production READY、www／apex aliases 及真實臺灣／美國出口驗證通過。
 
 ## 使用者會看到什麼
 
@@ -40,7 +40,7 @@ Cloudflare 已登入後台的 apex 與 www 記錄均為 `DNS only`，CNAME 指�
 - Ego Lite 實際開啟本機商品頁並提供測試國別 TW，成功抵達臺灣首頁，保留 utm_source；臺灣站標題與內容可讀。沒有修改臺灣站。
 - 首次以一般 `next start` 模擬時，Next 使用 localhost 作為內部 hostname，正式主機限制正確地未啟用轉址；驗證改用正式 hostname、僅監聽 loopback 的 custom Next server，沒有放寬程式限制。
 
-正式發布須核對指定 Git remote 與既有 Vercel project，部署 READY 後以臺灣及非臺灣出口檢查首頁、商品頁、參數與排除路徑。不得把偽造國別標頭的本機測試當作 Vercel 真實地理定位驗證。
+正式發布已核對指定 Git remote、main 與既有 Vercel project；dpl_HHRuxAKfu1bbrpwjH8PGkDfPEqrn 的 Git SHA 為 d00b871，Production READY，www／apex aliases 一致。真實臺灣出口的十項 HTTP 案例與瀏覽器商品頁轉址通過；Globalping 美國 Buffalo 節點的正式 /privacy 為 200、沒有 Location。證據：[正式部署](qa/2026-10-27-taiwan-geo-redirect/production-deployment.json)、[臺灣案例](qa/2026-10-27-taiwan-geo-redirect/production-taiwan-http.json)、[美國探測](qa/2026-10-27-taiwan-geo-redirect/production-us-probe.json)。
 
 回復方式：發布後若需停用，回復本次 `src/proxy.ts` GEO 區塊並重新部署，或依當次授權回到前一個已確認部署。DNS 與 Shopify 無需回復。
 
