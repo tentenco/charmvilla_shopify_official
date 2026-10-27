@@ -1,11 +1,12 @@
 # CHARM VILLA 開發交接
 
-## 2026-10-27 分析追蹤自我修復（發布驗收接續本輪QA）
+## 2026-10-27 分析追蹤自我修復與Aaron附件回信（已完成）
 
 - 使用者明確要求自我檢查與修復，並提供Aaron的TikTok匯出、要求按新證據回信。修復了先導航後同意的UTM遺失、SDK初次載入失敗不可重試、跨分頁撤回／同頁再同意的去重狀態與storage受阻的明確選擇；URL遮蔽checkout/account路徑token，GEO保留ttclid與實際廣告使用的tt_campaignid。沒有實作設計師bypass。
 - Node24 check與35相關測試通過；真實Google SDK已見活動欄位與204、暫時阻擋後恢復、同頁重同意與跨分頁撤回通過。英／中1440及390、鍵盤／reduced-motion驗證通過；Shopify獨立cart CRUD清空、checkout／account host驗證通過，未下單。詳[本輪QA](qa/2026-10-27-analytics-self-repair/README.md)。
 - Aaron附件已下載至私有/tmp，7CSV／120campaign-hour對帳相符；固定-5與紐約-4兩假設所有非零LPV都落GA查詢期間內，且早於新GEO規則部署。不可把完整歷史差異斷言為同意或機器人。實際TikTok in-app／placement／完整歷史WAF join仍缺。
-- 前兩封通知與報告已寄，不得重寄；本輪Aaron回信尚待正式修復驗收後寄同一thread。沿用先前go-live與本輪同一追蹤問題修復授權，僅發布確認修復；不改同意政策、GA filters、DNS、防火牆或廣告設定。正式部署／新回信結果以QA／PLAN最新狀態為準。
+- 應用6021eb4已push main，Production dpl_EyaoMSE7qWsH7tkohrTS5kuXVcyV READY、www／apex aliases一致。臺灣正式302保留TikTok IDs，API／robots200；同一Production唯一URL真實Google SDK collect204、延後同意campaign與重新同意去重驗收通過。臺灣出口使用唯一URL作SDK QA，不代表真實TikTok App測試。
+- Aaron英文補充診斷已回原信串，Gmail讀回SENT／收件人／全文一致；前兩封通知／報告不得重寄。已提供placement匯出欄位與App內測試步驟；完整歷史差異未量化，等待實際UTC offset、placement與TikTok iPhone／Android證據。沿用既有go-live授權，只發布已確認修復；不改同意政策、GA filters、DNS、防火牆或廣告設定。
 
 ## 2026-10-27 TikTok／GA4 診斷報告已寄
 

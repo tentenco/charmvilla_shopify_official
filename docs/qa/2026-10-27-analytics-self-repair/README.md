@@ -1,6 +1,6 @@
 # 分析追蹤自我檢查與修復
 
-2026-10-27；應用修復已完成本機驗證，發布狀態於正式驗收後補記。原始TikTok附件、商業數字、廣告ID與私人郵件不進Git。
+2026-10-27；應用修復已完成本機驗證並正式發布、完成線上驗收及Aaron英文回信。原始TikTok附件、商業數字、廣告ID與私人郵件不進Git。
 
 ## 已重現與修復
 
@@ -24,3 +24,12 @@
 - Vercel歷史查詢超過一日／custom aggregate受方案限制；目前安全樣本不能連回較早TikTok投放。API供應商的國別／裝置彙總也不能當成獨立真人驗證。
 - 已核對Aaron的CSV附件與來源限制，兩種可能時區的所有非零投放小時都位於GA查詢日期範圍內。新GEO首個部署READY時間見[first-geo-deployment.json](first-geo-deployment.json)，晚於附件所有已記錄LPV小時；不能以它解釋該批流量。
 - 修復的歷史影響量仍無法回推；拒絕率／機器人比例／TikTok實際App內iPhone與Android測試／placement仍待直接證據。手機Chromium視窗不等於真實TikTok App內瀏覽器。
+
+## 正式發布與回信
+
+- 應用提交 `6021eb4a1940ae5fe0b0ec49006ccb7ae0e974a1` 已推送指定GitHub main；[Production部署](production-deployment.json) `dpl_EyaoMSE7qWsH7tkohrTS5kuXVcyV` READY，2026-10-27T06:40:08.028Z，www／apex aliases一致。最終CLI inspect亦回讀READY與同一組aliases。
+- [臺灣正式HTTP](production-taiwan-http.json)：tea頁302、private no-store，UTM／ttclid／tt_campaignid保留；API／robots200且沒有Location。這是臺灣實際出口，未偽造國別header。
+- [正式artifact真實SDK](production-sdk.json)：先帶TikTok UTM進站、導航至商品後同意，送出正確campaign欄位／當下商品URL，collect204、page_view1、runtime exception0；只有分析同意，沒有廣告SDK。臺灣正式hostname會轉走，因此此項使用同一Production唯一URL及QA debug，非美國正式hostname的實際App測試。
+- [正式重新同意](production-reconsent.json)：page_view與view_item各1→2，清單事件重發、撤回ga-disable有效。完整本機SDK失敗恢復、跨分頁、雙語尺寸與cart檢查見上節，未把本機結果冒稱正式站重測。
+- 已依最新附件完成英文補充診斷並回覆Aaron原信串；Gmail讀回SENT、原thread／收件人／全文完全相符。未重寄前兩封郵件。私人原始附件、報告本文與寄信回條保留私有/tmp，不進Git。
+- 完整歷史差異仍不能量化；已請Aaron提供UI實際UTC offset、placement匯出與真實TikTok iPhone／Android旅程，優先最大LPV活動。沒有把測試故障當成歷史事故、沒有斷言同意率或機器人比例，沒有擅自新增同意量測。

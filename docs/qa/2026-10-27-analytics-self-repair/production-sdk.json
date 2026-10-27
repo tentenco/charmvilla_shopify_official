@@ -1,0 +1,52 @@
+{
+  "size": [
+    1440,
+    900
+  ],
+  "config": [
+    {
+      "id": "G-D3YCFQMZ2W",
+      "send_page_view": false,
+      "page_location": "https://charmvilla-demo2-pgk06etx9-tentenco.vercel.app/products/christmas-gift-box",
+      "page_referrer": "",
+      "ignore_referrer": false,
+      "campaign_source": "tiktok",
+      "campaign_medium": "paid_social",
+      "campaign_name": "cv_repair_prod_20261027",
+      "campaign_id": "qa-repair",
+      "allow_google_signals": false,
+      "allow_ad_personalization_signals": false,
+      "debug_mode": true
+    }
+  ],
+  "pageViews": 1,
+  "advertisingScript": false,
+  "campaign": [
+    {
+      "tid": "G-D3YCFQMZ2W",
+      "cs": "tiktok",
+      "cm": "paid_social",
+      "cn": "cv_repair_prod_20261027",
+      "ci": "qa-repair",
+      "dl": "https://charmvilla-demo2-pgk06etx9-tentenco.vercel.app/products/christmas-gift-box"
+    }
+  ],
+  "relatedLinks": [
+    {
+      "href": "/products/snowflake-gift-box",
+      "label": "View Christmas Charming Gift (Limited Edition)"
+    },
+    {
+      "href": "/products/reunion-paper-gift-box",
+      "label": "View Joyful Reunion"
+    },
+    {
+      "href": "/products/year-of-plenty-gift-box",
+      "label": "View Abundance & Prosperity"
+    }
+  ],
+  "collectStatuses": [
+    204
+  ],
+  "runtimeExceptions": 0
+}

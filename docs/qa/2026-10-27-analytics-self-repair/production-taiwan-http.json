@@ -1,0 +1,23 @@
+[
+  {
+    "path": "/collections/tea",
+    "status": 302,
+    "location": "https://www.charmvilla.com.tw/?utm_source=tiktok&utm_medium=paid_social&utm_campaign=qa_repair_20261027&ttclid=qa-click&tt_campaignid=qa-campaign",
+    "cache": "private, no-store, max-age=0",
+    "server": "Vercel"
+  },
+  {
+    "path": "/api/cart",
+    "status": 200,
+    "location": null,
+    "cache": "public, max-age=0, must-revalidate",
+    "server": "Vercel"
+  },
+  {
+    "path": "/robots.txt",
+    "status": 200,
+    "location": null,
+    "cache": "public, max-age=0, must-revalidate",
+    "server": "Vercel"
+  }
+]
